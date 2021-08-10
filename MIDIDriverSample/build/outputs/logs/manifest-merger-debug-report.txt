@@ -1,0 +1,77 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+MERGED from [:MIDIDriver] C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriver\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [jp.kshoji:javax-sound-midi:0.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\15b20417c58c80fd89cb2028e9fed506\javax-sound-midi-0.0.2\AndroidManifest.xml:2:1-7:12
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:1-49:12
+	package
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:3:5-43
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:5:5-30
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:4:5-28
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+uses-feature#android.hardware.usb.host
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:7:5-62
+	android:name
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:7:19-59
+uses-feature#android.hardware.audio.low_latency
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:8:5-71
+	android:name
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:8:19-68
+application
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:11:5-47:19
+	android:label
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:14:9-41
+	android:largeHeap
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:13:9-33
+	android:icon
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:12:9-45
+activity#jp.kshoji.driver.midi.sample.MIDIDriverMultipleSampleActivity
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:24:9-35:20
+	android:screenOrientation
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:29:13-50
+	android:label
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:26:13-54
+	android:launchMode
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:30:13-44
+	android:supportsPictureInPicture
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:28:13-52
+	android:resizeableActivity
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:27:13-46
+	android:name
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:25:13-61
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:31:13-34:29
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:32:17-77
+	android:name
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:32:27-74
+action#android.intent.action.MAIN
+ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:33:17-69
+	android:name
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:33:25-66
+uses-sdk
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+MERGED from [:MIDIDriver] C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriver\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-44
+MERGED from [:MIDIDriver] C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriver\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-44
+MERGED from [jp.kshoji:javax-sound-midi:0.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\15b20417c58c80fd89cb2028e9fed506\javax-sound-midi-0.0.2\AndroidManifest.xml:5:5-44
+MERGED from [jp.kshoji:javax-sound-midi:0.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\15b20417c58c80fd89cb2028e9fed506\javax-sound-midi-0.0.2\AndroidManifest.xml:5:5-44
+INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+		ADDED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml

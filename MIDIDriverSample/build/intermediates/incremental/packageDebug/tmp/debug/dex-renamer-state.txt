@@ -1,0 +1,4 @@
+#Wed Jul 21 18:15:54 CEST 2021
+base.0=C\:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

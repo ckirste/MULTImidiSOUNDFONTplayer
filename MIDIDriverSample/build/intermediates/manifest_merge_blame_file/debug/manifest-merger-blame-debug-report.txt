@@ -1,0 +1,77 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="jp.kshoji.driver.midi.sample"
+4    android:versionCode="9"
+5    android:versionName="1.8" >
+6
+7    <uses-sdk android:minSdkVersion="12" />
+7-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml
+8
+9    <uses-feature android:name="android.hardware.usb.host" />
+9-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:7:5-62
+9-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:7:19-59
+10    <uses-feature android:name="android.hardware.audio.low_latency" />
+10-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:8:5-71
+10-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:8:19-68
+11
+12    <application
+12-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:11:5-47:19
+13        android:debuggable="true"
+14        android:icon="@drawable/ic_launcher"
+14-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:12:9-45
+15        android:label="@string/app_name"
+15-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:14:9-41
+16        android:largeHeap="true" >
+16-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:13:9-33
+17
+18        <!--
+19        activity
+20            android:name=".MIDIDriverSingleSampleActivity"
+21            android:label="@string/app_name_single"
+22            android:launchMode="singleTask" >
+23            <intent-filter>
+24                <category android:name="android.intent.category.LAUNCHER" />
+25                <action android:name="android.intent.action.MAIN" />
+26            </intent-filter>
+27        </activity
+28        -->
+29        <activity
+29-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:24:9-35:20
+30            android:name="jp.kshoji.driver.midi.sample.MIDIDriverMultipleSampleActivity"
+30-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:25:13-61
+31            android:label="@string/app_name_multiple"
+31-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:26:13-54
+32            android:launchMode="singleTask"
+32-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:30:13-44
+33            android:resizeableActivity="true"
+33-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:27:13-46
+34            android:screenOrientation="landscape"
+34-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:29:13-50
+35            android:supportsPictureInPicture="true" >
+35-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:28:13-52
+36            <intent-filter>
+36-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:31:13-34:29
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:32:17-77
+37-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:32:27-74
+38
+39                <action android:name="android.intent.action.MAIN" />
+39-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:33:17-69
+39-->C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\AndroidManifest.xml:33:25-66
+40            </intent-filter>
+41        </activity>
+42
+43        <!--
+44        activity
+45            android:name=".UsbMidiDriverSampleActivity"
+46            android:label="@string/app_name_driver"
+47            android:launchMode="singleTask" >
+48            <intent-filter>
+49                <category android:name="android.intent.category.LAUNCHER" />
+50                <action android:name="android.intent.action.MAIN" />
+51            </intent-filter>
+52        </activity
+53        -->
+54    </application>
+55
+56</manifest>

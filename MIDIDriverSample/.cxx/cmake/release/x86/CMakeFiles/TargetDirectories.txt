@@ -1,0 +1,3 @@
+C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/.cxx/cmake/release/x86/CMakeFiles/native-lib.dir
+C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/.cxx/cmake/release/x86/CMakeFiles/edit_cache.dir
+C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/.cxx/cmake/release/x86/CMakeFiles/rebuild_cache.dir

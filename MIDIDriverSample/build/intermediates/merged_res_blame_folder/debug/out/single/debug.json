@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_rectbtnusbdev.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\rectbtnusbdev.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_menu_delete.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-xxhdpi\\ic_menu_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_customborder.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\customborder.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\layout_main_neu.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\layout\\main_neu.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\layout_midi_event.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\layout\\midi_event.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_menu_delete.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_menu_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_menu_delete.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_menu_delete.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_rectmutebtn.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\rectmutebtn.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_rectbtnselins.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\rectbtnselins.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\layout_instrument_options.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\layout\\instrument_options.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_rect_black_key.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\rect_black_key.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\layout_main_final.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\layout\\main_final.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_popupbg9.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\popupbg9.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_menu_delete.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-mdpi\\ic_menu_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_rect_white_key.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-ldpi\\rect_white_key.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_menu_delete.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-hdpi\\ic_menu_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_menu_delete.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\drawable-xhdpi\\ic_menu_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_menu_delete.png.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_menu_delete.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\layout_main.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\layout\\main.xml"
+    }
+]

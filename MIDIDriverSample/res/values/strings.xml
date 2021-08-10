@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MIDIDriverSample</string>
+    <string name="app_name_single">MIDIDriverSample(Single Device)</string>
+    <string name="app_name_multiple">MULTImidiSOUNDFONTplayer</string>
+    <string name="app_name_driver">MIDIDriverSample(using Driver class)</string>
+    <string name="velocity">Velocity:</string>
+    <string name="imagedelete">Imagedelete</string>
+
+</resources>	

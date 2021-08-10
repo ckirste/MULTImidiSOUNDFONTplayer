@@ -1,0 +1,42 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,8,-1",
+                        "startColumns": "-1,-1,-1,-1,4,-1",
+                        "startOffsets": "-1,-1,-1,-1,393,-1",
+                        "endColumns": "-1,-1,-1,-1,51,-1",
+                        "endOffsets": "-1,-1,-1,-1,440,-1"
+                    },
+                    "to": {
+                        "startLines": "26,27,28,29,30,31",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "591,645,726,797,873,925",
+                        "endColumns": "53,80,70,75,51,46",
+                        "endOffsets": "640,721,792,868,920,967"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\res\\values\\arrays.xml",
+                    "from": {
+                        "startLines": "-1,-1",
+                        "startColumns": "-1,-1",
+                        "startOffsets": "-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,20",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,482",
+                        "endLines": "19,25",
+                        "endColumns": "19,19",
+                        "endOffsets": "477,586"
+                    }
+                }
+            ]
+        }
+    ]
+}

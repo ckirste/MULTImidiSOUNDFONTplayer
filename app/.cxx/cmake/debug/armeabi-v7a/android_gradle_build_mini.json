@@ -1,0 +1,42 @@
+{
+  "buildFiles": [
+    "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\.cxx\\cmake\\debug\\armeabi-v7a\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\.cxx\\cmake\\debug\\armeabi-v7a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Debug-armeabi-v7a": {
+      "artifactName": "native-lib",
+      "buildCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\.cxx\\cmake\\debug\\armeabi-v7a\" native-lib",
+      "abi": "armeabi-v7a",
+      "output": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libnative-lib.so",
+      "runtimeFiles": [
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libc++_shared.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libcharset.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libffi.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libFLAC.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libfluidsynth.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libfluidsynth-assetloader.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libgio-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libglib-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libgmodule-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libgobject-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libgthread-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libiconv.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libintl.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\liboboe.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libogg.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libsndfile.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libvorbis.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libvorbisenc.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libvorbisfile.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\libz.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\armeabi-v7a\\preloadable_libiconv.so"
+      ]
+    }
+  }
+}

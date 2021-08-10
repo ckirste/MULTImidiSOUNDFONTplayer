@@ -1,0 +1,11 @@
+# ninja log v5
+2	2582	646007777	CMakeFiles/native-lib.dir/native-lib.cpp.o	3f34a08186856f51
+2587	4844	646007779	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	3359f1596106e752
+9	4320	646088247	CMakeFiles/native-lib.dir/native-lib.cpp.o	3f34a08186856f51
+4321	6340	646088249	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	3359f1596106e752
+47	2877	646326489	CMakeFiles/native-lib.dir/native-lib.cpp.o	3f34a08186856f51
+2878	5395	646326491	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	3359f1596106e752
+56	2596	647635736	CMakeFiles/native-lib.dir/native-lib.cpp.o	3f34a08186856f51
+2598	4910	647635739	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	3359f1596106e752
+29	3977	648587317	CMakeFiles/native-lib.dir/native-lib.cpp.o	3f34a08186856f51
+3978	6269	648587319	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	3359f1596106e752

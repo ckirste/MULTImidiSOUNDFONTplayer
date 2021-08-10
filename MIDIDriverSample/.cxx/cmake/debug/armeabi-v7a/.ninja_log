@@ -1,0 +1,11 @@
+# ninja log v5
+1	6972	646007766	CMakeFiles/native-lib.dir/native-lib.cpp.o	d5d8b7500fa8d52f
+6979	9390	646007769	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	c25ea04a1084f3d2
+18	8396	646088228	CMakeFiles/native-lib.dir/native-lib.cpp.o	d5d8b7500fa8d52f
+8398	10549	646088230	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	c25ea04a1084f3d2
+52	9438	646326472	CMakeFiles/native-lib.dir/native-lib.cpp.o	d5d8b7500fa8d52f
+9439	11803	646326474	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	c25ea04a1084f3d2
+61	7833	647635721	CMakeFiles/native-lib.dir/native-lib.cpp.o	d5d8b7500fa8d52f
+7834	10098	647635723	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	c25ea04a1084f3d2
+59	10796	648587304	CMakeFiles/native-lib.dir/native-lib.cpp.o	d5d8b7500fa8d52f
+10797	13192	648587306	C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	c25ea04a1084f3d2
