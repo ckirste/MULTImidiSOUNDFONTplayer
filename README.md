@@ -1,28 +1,12 @@
-Android USB MIDI Driver
+Description
 ====
-[![Build Status](https://travis-ci.org/kshoji/USB-MIDI-Driver.svg?branch=master)](https://travis-ci.org/kshoji/USB-MIDI-Driver)
+with MULTImidiSOUNDFONTplayer you can mix diverent instruments
+from a sf2-file (or diverse in future)  for each midi-controller you plug on your
+smartphone (os android) via usb-otg, so you can have your
+own ochestra for each midi-controller. 
 
-USB MIDI Driver using Android USB Host API
 
-- No root privilege needed.
-- Supports the standard USB MIDI devices; like sequencers, or instruments.
-- Supports some non-standard USB MIDI (but protocol is compatible with USB MIDI) devices.
-    - YAMAHA, Roland, MOTU, or other makers' devices listed on [device_filter.xml](https://github.com/kshoji/USB-MIDI-Driver/blob/master/MIDIDriver/res/xml/device_filter.xml) can be connected.
-- Supports multiple device connections.
-- Has `javax.sound.midi` compatible classes.
-    - See the [javax.sound.midi Documents](https://github.com/kshoji/USB-MIDI-Driver/wiki/javax.sound.midi-porting-for-Android).
 
-Requirement
-====
-- Android : OS version 3.1(API Level 12) or higher, and have an USB host port.
-    - The android Linux kernel must support USB MIDI devices. Some Android device recognizes only USB-HID and USB-MSD by kernel configurations.
-- USB MIDI (compatible) device
-
-the optional thing:
-
-- The self powered USB hub (if want to connect multiple USB MIDI devices).
-- USB OTG cable (if the Android device has no standard USB-A port).
-- USB MIDI <--> Lagacy MIDI(MIDI 1.0) converter cable (if want to connect with legacy MIDI instruments).
 
 Repository Overview
 ====
@@ -31,21 +15,35 @@ Repository Overview
 
 - Sample Project : `MIDIDriverSample`
     - The sample implementation of the synthesizer / MIDI event logger.
-    - Pre-compiled sample project is available on [Google Play Market](https://play.google.com/store/apps/details?id=jp.kshoji.driver.midi.sample).
+    - the synthesizer uses fluidsynth
+  
+
 
 Library Project Usages
 ====
 
 See the [project wiki](https://github.com/kshoji/USB-MIDI-Driver/wiki) for the library usages.
+AND fluidsynth.org
 
-FAQ
-----
-- What is the 'cable' argument of `"onMidi..."` or `"sendMidi..."` method?
-    - A single USB MIDI endpoint has multiple "virtual MIDI cables". 
-    It's used for increasing the midi channels. The cable number's range is 0 to 15.
-- The application doesn't detect the device even if the USB MIDI device connected.
-    - See the [Trouble shooting](https://github.com/kshoji/USB-MIDI-Driver/wiki/TroubleShooting-on-connecting-an-USB-MIDI-device) documents.
 
-License
+Todo
 ====
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+- iterate instruments per usbdevice
+- diverent volumes for each instrument
+- transpose buttons
+- save/open selected instruments and settings
+- add more effects (reverb, delay,etc.) - circle-seekbar
+- file-chooser for sf2-files
+- cleanup code
+- record/play option
+- option of drum companion
+...
+
+Thanks
+====
+- fluidsynth
+- https://github.com/HectorRicardo/fluidsynth-android-hello-world
+- https://github.com/kshoji/USB-MIDI-Driver
+- https://github.com/agangzz/SherlockMidi
+- javax.sound.midi
+- https://github.com/kshoji/javax.sound.midi-for-Android
