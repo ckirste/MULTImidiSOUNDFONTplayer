@@ -34,9 +34,7 @@ Todo
 - save/open selected instruments and settings
 - add more effects (reverb, delay,etc.) - circle-seekbar
 - file-chooser for sf2-files
-- pdfviewer for sheetmusic
-- cleanup code
-- record/play option
+- record/play midi option
 - option of drum companion
 ...
 
