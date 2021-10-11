@@ -28,7 +28,7 @@ AND fluidsynth.org
 
 Todo
 ====
-- iterate instruments per usbdevice
+- iterate instruments per usbdevice * work in progress *
 - diverent volumes for each instrument
 - transpose buttons
 - save/open selected instruments and settings
