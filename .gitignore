@@ -1,7 +1,7 @@
 MIDIDriverSample/target
 MIDIDriver/target
-MIDIDriver/.settings
-MIDIDriverSample/.settings
+MIDIDriver/.temp_settings
+MIDIDriverSample/.temp_settings
 MIDIDriver/bin
 MIDIDriverSample/bin
 MIDIDriver/gen

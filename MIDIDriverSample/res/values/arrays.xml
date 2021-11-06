@@ -18,5 +18,11 @@
         <item >14</item>
         <item >15</item>
     </string-array>
+    <string-array name="velocitiy">
+        <item>auto</item>
+        <item>127</item>
+
+
+    </string-array>
     
 </resources>

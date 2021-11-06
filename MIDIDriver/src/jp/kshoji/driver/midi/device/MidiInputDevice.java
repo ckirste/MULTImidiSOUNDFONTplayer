@@ -195,7 +195,7 @@ public final class MidiInputDevice {
 
 			// Don't allocate instances in the loop, as much as possible.
 			while (!stopFlag) {
-				length = deviceConnection.bulkTransfer(usbEndpoint, bulkReadBuffer, maxPacketSize, 0);
+				length = deviceConnection.bulkTransfer(usbEndpoint, bulkReadBuffer, maxPacketSize, 1000);//is better than 0
 				
 				synchronized (suspendSignal) {
 					if (suspendFlag) {

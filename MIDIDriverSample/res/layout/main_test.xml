@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:seekarc="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/layAppContent"
+	android:orientation="vertical"
+	tools:context="jp.kshoji.driver.midi.sample.MIDIDriverMultipleSampleActivity">
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/layOpenSf"
+		android:orientation="horizontal">
+
+		<jp.kshoji.driver.midi.sample.util.InstrumentButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Instrumentbutton"
+			android:id="@+id/instrBtnGetInstrumentsOfStorage"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Open SF2"
+			android:id="@+id/openInstr"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/txtviewUsbName"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_gravity="center_vertical|center_horizontal"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/seekbarlayout"
+		android:orientation="horizontal">
+
+		<SeekBar
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:max="10000"
+			android:progress="50"
+			android:id="@+id/mainSeekBarHallEffect"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/laydropdownDevices"
+		android:visibility="gone">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_weight="1">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:text="MIDI Device :"
+				android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+			<Spinner
+				android:id="@+id/deviceNameSpinner"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:spinnerMode="dropdown"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:text="(In to Out) :"
+				android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+			<ToggleButton
+				android:id="@+id/toggleButtonThru"
+				android:layout_width="100dp"
+				android:layout_height="50dp"
+				android:layout_gravity="top"
+				android:textOff="Thru OFF"
+				android:textOn="Thru ON"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1">
+
+			<TextView
+				android:id="@+id/textView4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:text="Cable ID :"
+				android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+			<Spinner
+				android:id="@+id/cableIdSpinner"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:entries="@array/cables"
+				android:spinnerMode="dropdown"/>
+
+		</LinearLayout>
+
+		<Button
+			android:layout_width="50dp"
+			android:layout_height="wrap_content"
+			android:text="+"
+			android:layout_gravity="center_vertical|center_horizontal"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/layButtTast">
+
+		<Button
+			android:id="@+id/buttonC"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="0"/>
+
+		<Button
+			android:id="@+id/buttonCis"
+			android:layout_width="wrap_content"
+			android:layout_height="30dp"
+			android:layout_weight="1"
+			android:tag="1"/>
+
+		<Button
+			android:id="@+id/buttonD"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="2"/>
+
+		<Button
+			android:id="@+id/buttonDis"
+			android:layout_width="wrap_content"
+			android:layout_height="30dp"
+			android:layout_weight="1"
+			android:tag="3"/>
+
+		<Button
+			android:id="@+id/buttonE"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="4"/>
+
+		<Button
+			android:id="@+id/buttonF"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="5"/>
+
+		<Button
+			android:id="@+id/buttonFis"
+			android:layout_width="wrap_content"
+			android:layout_height="30dp"
+			android:layout_weight="1"
+			android:tag="6"/>
+
+		<Button
+			android:id="@+id/buttonG"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="7"/>
+
+		<Button
+			android:id="@+id/buttonGis"
+			android:layout_width="wrap_content"
+			android:layout_height="30dp"
+			android:layout_weight="1"
+			android:tag="8"/>
+
+		<Button
+			android:id="@+id/buttonA"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="9"/>
+
+		<Button
+			android:id="@+id/buttonAis"
+			android:layout_width="wrap_content"
+			android:layout_height="30dp"
+			android:layout_weight="1"
+			android:tag="10"/>
+
+		<Button
+			android:id="@+id/buttonB"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="11"/>
+
+		<Button
+			android:id="@+id/buttonC2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:tag="12"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/mainHorzLay">
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.1">
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<TableLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<TableRow>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/txtviewTranspose"
+							android:layout_gravity="center"
+							android:layout_weight="1.0"
+							android:text="Transp"
+							android:gravity="center"/>
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnTransMin12"
+							android:layout_width="50dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="-12"/>
+
+						<Button
+							android:id="@+id/btnTransPlus12"
+							android:layout_width="50dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="+12"/>
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnTransMin1"
+							android:layout_width="50dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="-1"/>
+
+						<Button
+							android:id="@+id/btnTransPlus1"
+							android:layout_width="50dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="+1"/>
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnTrans0"
+							android:layout_width="50dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="0"/>
+
+					</TableRow>
+
+				</TableLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/layoutForUsbDevices"
+			android:layout_weight="3.5">
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/mainlayDrums">
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Drums"
+				android:layout_gravity="center"
+				android:background="@drawable/rectbtnusbdev"/>
+
+			<GridLayout
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:rowCount="3"
+				android:columnCount="2"
+
+				android:id="@+id/layDrums"
+				android:paddingTop="5dp">
+
+				<Button
+					android:layout_width="80dp"
+					android:layout_height="80dp"
+					android:text="1"
+					android:background="#42FF00"
+					android:layout_margin="10dp"
+					android:shadowDx="10.0"
+					android:shadowColor="#AC9897"
+					android:shadowDy="10.0"/>
+
+				<Button
+					android:layout_width="80dp"
+					android:layout_height="80dp"
+					android:text="2"
+					android:background="#EA9B17"
+					android:layout_margin="10dp"/>
+
+				<Button
+					android:layout_width="80dp"
+					android:layout_height="80dp"
+					android:text="3"
+					android:background="#00B7FB"
+					android:layout_margin="10dp"/>
+
+				<Button
+					android:layout_width="80dp"
+					android:layout_height="80dp"
+					android:text="4"
+					android:background="#F3FF32"
+					android:layout_margin="10dp"/>
+
+			</GridLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+

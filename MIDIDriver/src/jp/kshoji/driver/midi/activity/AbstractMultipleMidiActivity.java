@@ -2,6 +2,7 @@ package jp.kshoji.driver.midi.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
@@ -26,6 +27,12 @@ import jp.kshoji.driver.midi.device.MidiDeviceConnectionWatcher;
  * @author K.Shoji
  */
 public abstract class AbstractMultipleMidiActivity extends Activity implements OnMidiDeviceDetachedListener, OnMidiDeviceAttachedListener, OnMidiInputEventListener {
+
+    protected abstract void onActivityResult(int requestCode, int resultCode, Intent data) //onActivityResult
+    ;
+
+	public abstract void onRequestPermissionsResult(int requestCode,
+													String[] permissions, int[] grantResults);
 
 	/**
 	 * Implementation for multiple device connections.
