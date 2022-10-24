@@ -6,29 +6,47 @@
 #include <list>
 using namespace std;
 
+/*int ibank = 0;
+int iprog = 0;
 
+int const maxPresets = 128 * 128;
+int iPresets = 0;*/
 
 fluid_settings_t *temp_settings;
-fluid_synth_t *temp_synth;
+fluid_synth_t *local_synth;
 fluid_audio_driver_t *temp_adriver;
-int sf;
-int more=1;
+//int sf;
+//int more=1;
 
+float chorusDepth=0.0;
+float chorusLevel=0.0;
+int chorusNr=0;
+float chorusSpeed=0.0;
+
+float reverbDamp=0.2;
+float reverbLevel=0.5;
+float reverbRoomSize=0.9;
+float reverbWidth=0.7;
 
 
 class MyFluidsynth {
 
 private:
+
+    //fluid_ladspa_fx_t *fx;
     fluid_settings_t *settings;
-    fluid_synth_t *synth;
-    fluid_audio_driver_t *audiodriver;
+    fluid_synth_t *synth = NULL;
+    fluid_audio_driver_t *audiodriver = NULL;
     fluid_sfont_t *pSoundFont;
     fluid_preset_t *preset;
 
+    int transpo=0;
     int usbId;
     bool volumeOff =false;
     const char *presetName;
-    int local_velocity = 0;
+    //int local_velocity = 0;
+    int local_velocity=127;
+    bool boolFixedVelocity=true;
 
 
 
@@ -65,6 +83,37 @@ public:
 
     }
 
+    int getLocal_velocity(int intVelocity)
+    {
+
+        if(boolFixedVelocity==true){
+
+            return local_velocity;
+
+        }else{
+
+            if(intVelocity>=local_velocity){
+
+
+                return local_velocity;
+
+            }else{
+
+                return intVelocity;
+
+            }
+        }
+    }
+
+    void setBoolFixedVelocity(bool boolFixedVelocity)
+    {
+        this->boolFixedVelocity = boolFixedVelocity;
+    }
+    bool isBoolFixedVelocity()
+    {
+        return boolFixedVelocity;
+    }
+
     void setUsbId(jint usbId){
 
         this->usbId=usbId;
@@ -74,10 +123,161 @@ public:
 
         return usbId;
     }
+
+    void setSynthSettings(JNIEnv *env,jstring synth_setting,jfloat synth_setting_value){
+
+
+        const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        float fl_synth_setting_value = synth_setting_value;
+
+        fluid_settings_setnum(settings,settStr,fl_synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsChorusNr(JNIEnv *env,int synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+//        int int_synth_setting_value = synth_setting_value;
+
+
+        chorusNr=synth_setting_value;
+        fluid_settings_setint(settings,"synth.chorus.nr",synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsChorusDepth(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        chorusDepth=synth_setting_value;
+        fluid_settings_setnum(settings,"synth.chorus.depth",(double)synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsChorusLevel(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        chorusLevel=synth_setting_value;
+        fluid_settings_setnum(settings,"synth.chorus.level",(double)synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsChorusSpeed(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        chorusSpeed=synth_setting_value;
+        fluid_settings_setnum(settings,"synth.chorus.speed",(double)synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsReverbLevel(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        reverbLevel=synth_setting_value;
+        fluid_settings_setnum(settings,"synth.reverb.level",(double)synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsReverbDamp(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        reverbDamp=synth_setting_value;
+        fluid_settings_setnum(settings,"synth.reverb.damp",(double)synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsReverbRS(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        reverbRoomSize=synth_setting_value;
+
+        fluid_settings_setnum(settings,"synth.reverb.room-size",(double)synth_setting_value);
+
+
+    }
+
+    void setSynthSettingsReverbWidth(JNIEnv *env,float synth_setting_value){
+
+
+        //const char *settStr = env->GetStringUTFChars(synth_setting, nullptr);
+
+        //int int_synth_setting_value = synth_setting_value;
+
+        reverbWidth=synth_setting_value;
+        fluid_settings_setnum(settings,"synth.reverb.width",(double)synth_setting_value);
+
+
+    }
+
+
+
+
+    void setSynthSettingsReverbActive(){
+
+        fluid_settings_setint(settings,"synth.reverb.active", 1);
+
+
+
+    }
+
+    void setSynthSettingsChorusActive(){
+
+        fluid_settings_setint(settings,"synth.chorus.active", 1);
+
+
+    }
+
     void setDefaultSettings(JNIEnv *env, jstring jSoundfontPath){
 
         settings = new_fluid_settings();
+        int sf;
 
+
+        int coreCount=_SC_NPROCESSORS_CONF;
+        //int core = android_getCpuCount();
+
+        fluid_settings_setnum(settings,"synth.chorus.depth",chorusDepth);
+        fluid_settings_setint(settings,"synth.chorus.nr",chorusNr);
+        fluid_settings_setnum(settings,"synth.chorus.level",chorusLevel);
+        fluid_settings_setnum(settings,"synth.chorus.speed",chorusSpeed);
+
+        fluid_settings_setnum(settings,"synth.reverb.damp",reverbDamp);
+        fluid_settings_setnum(settings,"synth.reverb.room-size",reverbRoomSize);
+        fluid_settings_setnum(settings,"synth.reverb.level",reverbLevel);
+        fluid_settings_setnum(settings,"synth.reverb.width",reverbWidth);
 
 
         fluid_settings_setstr(settings, "audio.driver", "oboe");
@@ -86,7 +286,7 @@ public:
         fluid_settings_setnum(settings,"synth.sample-rate",48000);
         fluid_settings_setint(settings,"audio.periods",2);
         fluid_settings_setint(settings,"audio.period-size",256);
-        fluid_settings_setint(settings,"synth.cpu-cores",8);
+        fluid_settings_setint(settings,"synth.cpu-cores",coreCount);
 
 
         synth = new_fluid_synth(settings);
@@ -96,6 +296,36 @@ public:
         // Load sample soundfont
         const char *soundfontPath = env->GetStringUTFChars(jSoundfontPath, nullptr);
         sf = fluid_synth_sfload(synth, soundfontPath, 1);
+
+        /*
+        fx = fluid_synth_get_ladspa_fx(synth);
+        int fluidLadspa = fluid_ladspa_activate(fx);
+        if(fluidLadspa){
+
+            jclass clazz = env->FindClass("jp/kshoji/driver/midi/sample/MIDIDriverMultipleSampleActivity");
+
+            jstring jstr = env->NewStringUTF("ladspa activated");
+
+            jmethodID setText = env->GetMethodID(clazz,"testToast","(Ljava/lang/String;)V");
+
+            jobject obj = env->AllocObject(clazz);
+            env->CallVoidMethod(obj, setText,jstr);
+
+            int fluidEffect = fluid_ladspa_add_effect(fx,"e1","/usr/lib/ladspa/delay.so","delay");
+
+            if(fluidEffect){
+
+                fluid_ladspa_add_buffer(fx,"fxbuffer");
+                int fluidLink = fluid_ladspa_effect_link(fx,"e1","Output","fxbuffer");
+                if(fluidLink){
+
+                    fluid_ladspa_effect_set_control(fx,"e1","Output",1.5);
+
+                }
+
+            }
+        }
+        */
 
     }
 
@@ -171,16 +401,12 @@ public:
     void onNoteOn(jint channel, jint note,
                   jint velocity,jint usbId){
 
-        if(usbId==this->usbId && volumeOff==false){//maybe it has to be &&
+        if(usbId==this->usbId){//maybe it has to be &&
 
-            if(local_velocity>0){
+            int transp=transpo;
+            int velo = getLocal_velocity(velocity);
+            fluid_synth_noteon( synth, channel, note + transp, velo );
 
-                fluid_synth_noteon( synth, channel, note, local_velocity );
-
-            }else{
-
-                fluid_synth_noteon( synth, channel, note, velocity );
-            }
 
         }else{
 
@@ -192,10 +418,11 @@ public:
 
     void onNoteOff(jint channel, jint note,jint usbId){
 
-        if(usbId==this->usbId && volumeOff==false){//maybe it has to be &&
+        if(usbId==this->usbId){//maybe it has to be &&
 
 
-            fluid_synth_noteoff(synth, channel, note);
+            int transp=transpo;
+            fluid_synth_noteoff(synth, channel, note + transp);
         }else{
 
             //do nothing
@@ -204,17 +431,41 @@ public:
 
 
     }
+
+    void settTranspo(int transpo){
+
+
+        this->transpo=transpo;
+
+
+
+    }
+
     void deleteFluidSynth(){
 
-        //preset=nullptr;
+        if(audiodriver){
 
-        //fluid_synth_sfunload(synth,fluid_sfont_get_id(pSoundFont), true);
-        //fluid_synth_remove_sfont(temp_synth,pSoundFont);
-        delete_fluid_audio_driver(audiodriver);
-        delete_fluid_synth(synth);
-        delete_fluid_settings(settings);
 
-        delete presetName;
+
+            delete_fluid_audio_driver(audiodriver);
+
+        }
+        if(synth){
+
+
+            delete_fluid_synth(synth);
+
+        }
+        if(settings){
+
+            delete_fluid_settings(settings);
+
+        }
+
+
+
+
+        //delete presetName;
 
 
 
@@ -232,13 +483,17 @@ list <MyFluidsynth*> myfluidsynthList;
 extern "C" JNIEXPORT void JNICALL Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthHelloWorld(JNIEnv *env, jobject, jstring jSoundfontPath) {
     // Setup synthesizer
 
+    fluid_settings_t *temp_settings;
+    fluid_synth_t *temp_synth;
+    fluid_audio_driver_t *temp_adriver;
+
     temp_settings = new_fluid_settings();
 
-    fluid_settings_setnum(temp_settings, "temp_synth.reverb.room-size", 0.5);
+    fluid_settings_setnum(temp_settings, "synth.reverb.room-size", 0.5);
     fluid_settings_setstr(temp_settings, "audio.driver", "oboe");
     fluid_settings_setstr(temp_settings, "audio.oboe.performance-mode", "LowLatency");
     fluid_settings_setstr(temp_settings, "audio.oboe.sharing-mode", "Exclusive");
-    fluid_settings_setnum(temp_settings, "temp_synth.sample-rate", 48000);
+    fluid_settings_setnum(temp_settings, "synth.sample-rate", 48000);
     fluid_settings_setint(temp_settings, "audio.periods", 2);
     fluid_settings_setint(temp_settings, "audio.period-size", 256);
 
@@ -279,9 +534,9 @@ extern "C" JNIEXPORT void JNICALL Java_jp_kshoji_driver_midi_sample_MIDIDriverMu
     sleep(1);
     fluid_synth_noteoff(temp_synth, 0, 58);
 
-    //delete_fluid_audio_driver(temp_adriver);
-    //delete_fluid_synth(temp_synth);
-    //delete_fluid_settings(temp_settings);
+    delete_fluid_audio_driver(temp_adriver);
+    delete_fluid_synth(temp_synth);
+    delete_fluid_settings(temp_settings);
 
 }
 
@@ -289,7 +544,7 @@ extern "C" JNIEXPORT void JNICALL Java_jp_kshoji_driver_midi_sample_MIDIDriverMu
                                                                         jint channel, jint note,
                                                                         jint velocity) {
 
-    fluid_synth_noteon(temp_synth, channel, note, velocity );
+    //fluid_synth_noteon(local_synth, channel, note, velocity );
 
 }
 
@@ -298,7 +553,7 @@ JNIEXPORT void JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthSendNoteOffMessage(JNIEnv *env, jobject thiz,
                                                                          jint channel, jint note) {
 
-    fluid_synth_noteoff(temp_synth, channel, note);
+    //fluid_synth_noteoff(local_synth, channel, note);
 
 }
 
@@ -306,9 +561,9 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthDeleteSynth(JNIEnv *env, jobject thiz) {
 
-    delete_fluid_audio_driver(temp_adriver);
-    delete_fluid_synth(temp_synth);
-    delete_fluid_settings(temp_settings);
+    //delete_fluid_audio_driver(temp_adriver);
+    //delete_fluid_synth(local_synth);
+    //delete_fluid_settings(temp_settings);
     //delete_fluid_midi_driver(mdriver);
 }
 
@@ -316,71 +571,12 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthProgrammChange(JNIEnv *env, jobject thiz,
                                                                      jint programm) {
-    fluid_synth_program_change(temp_synth, 0, programm);
+    //fluid_synth_program_change(local_synth, 0, programm);
 }
 
-int ibank = 0;
-int iprog = 0;
-
-int const maxPresets = 128 * 128;
-int iPresets = 0;
-
-//Get List of all presetnames of loaded Soundfont
-extern "C"
-JNIEXPORT void JNICALL
-Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthGetPresetName(
-        JNIEnv *env, jobject thiz) {
-    fluid_preset_t *preset;
-    fluid_sfont_t *pSoundFont = fluid_synth_get_sfont(temp_synth, 0);
-
-    while(more) {
-        preset = fluid_sfont_get_preset(pSoundFont, ibank, iprog);
-
-        if(iPresets>maxPresets){
-
-            more=0;
-            jclass clazz = env->FindClass(
-                    "jp/kshoji/driver/midi/sample/MIDIDriverMultipleSampleActivity");
-
-            //jmethodID setInstrmentspinner = env->GetMethodID(clazz, "setInstrmentspinner", "()V");
-
-            jmethodID getPresetnamesFromList = env->GetMethodID(clazz, "getPresetnamesFromList", "()V");
-            env->CallVoidMethod(thiz, getPresetnamesFromList);
-
-        }else if(iprog>127){
-
-            iprog=-1;
-            ibank++;
-
-        }else if(preset==NULL){
-
-            //do nothing
-
-        }else{
-
-            jint jbank = fluid_preset_get_banknum(preset);
-            jint jprog = iprog;
-            jstring jstr = env->NewStringUTF(fluid_preset_get_name(preset));
-
-            jclass clazz = env->FindClass(
-                    "jp/kshoji/driver/midi/sample/MIDIDriverMultipleSampleActivity");
-
-            jmethodID setListeInstrumenteObjects = env->GetMethodID(clazz,"setListeInstrumenteObjects",
-                                                                    "(Ljava/lang/String;II)V");
-            //jmethodID setListeInstrumenteNames = env->GetMethodID(clazz, "setListeInstrumenteNames", "(Ljava/lang/String;)V");
-
-            env->CallVoidMethod(thiz, setListeInstrumenteObjects, jstr,jbank,jprog);
 
 
-        }
 
-        iPresets++;
-        iprog++;
-
-    }
-
-
-}
 
 extern "C"
 JNIEXPORT jint JNICALL
@@ -388,7 +584,7 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthget
                                                                                      jobject thiz) {
     // TODO: implement fluidsynthgetMore()
 
-    return (jint)more;
+    return 1;
 }
 
 
@@ -410,7 +606,9 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_startFluidsyn
     }
 
 
-}extern "C"
+}
+
+extern "C"
 JNIEXPORT jint JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_deleteFluidsynth_1Synth_1List(
         JNIEnv *env, jobject thiz) {
@@ -634,7 +832,7 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1L
                                                 "()V");
 
     list<MyFluidsynth *>::iterator it;
-    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
 
         const char *getPresetNameFromJava = env->GetStringUTFChars(str_presetname, nullptr);
         const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
@@ -644,13 +842,20 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1L
         if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
             i_usb_id == listUsbId) {
 
+            it.operator*()->deleteFluidSynth();
+
             it = myfluidsynthList.erase(it);
-            env->CallVoidMethod(thiz, setInstrMuteOn);
+            break;
+
+            //env->CallVoidMethod(thiz, setInstrMuteOn);
 
 
         }
     }
-}extern "C"
+    env->CallVoidMethod(thiz, setInstrMuteOn);
+}
+
+extern "C"
 JNIEXPORT void JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthListSetVelocity(
         JNIEnv *env, jobject thiz, jint global_channel, jint temp_usb_id, jstring temp_preset_name,
@@ -675,7 +880,52 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthLis
         }
     }
 
-}extern "C"
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthListSetVelocity_1For_1All(
+        JNIEnv *env, jobject thiz, jint global_channel, jint usb_device_id, jint int_velocity) {
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (usb_device_id == listUsbId) {
+
+            it.operator*()->setVelocity(int_velocity);
+
+
+
+        }
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthListsetFixedVel_1For_1All(
+        JNIEnv *env, jobject thiz, jint channel, jint i_usb_id, jboolean fixed) {
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (i_usb_id == listUsbId) {
+
+            it.operator*()->setBoolFixedVelocity(fixed);
+
+
+
+        }
+    }
+
+
+}
+
+extern "C"
 JNIEXPORT jint JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1ListDeleteInstrumentFinal(
         JNIEnv *env, jobject thiz, jint channel, jint i_usb_id, jstring str_presetname) {
@@ -684,14 +934,14 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1L
 
     //jclass clazz = env->FindClass("jp/kshoji/driver/midi/sample/MIDIDriverMultipleSampleActivity");
 
-
     //jstring jstr = env->NewStringUTF("Instrument deleted");
-    //jmethodID setInstrMuteOn = env->GetMethodID(clazz,"setInstrumentMuteOn","()V";
+
     //jmethodID setText = env->GetMethodID(clazz,"testToast","(Ljava/lang/String;)V");
 
-
+    //env->CallVoidMethod(thiz, setText,jstr);
 
     list<MyFluidsynth *>::iterator it;
+
     for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
 
         const char *getPresetNameFromJava = env->GetStringUTFChars(str_presetname, nullptr);
@@ -702,8 +952,10 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1L
         if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
             i_usb_id == listUsbId) {
 
+            it.operator*()->deleteFluidSynth();
+
             it = myfluidsynthList.erase(it);
-            //env->CallVoidMethod(thiz, setText,jstr);
+
             return 1;
 
 
@@ -721,14 +973,50 @@ JNIEXPORT void JNICALL
 Java_jp_kshoji_driver_midi_sample_InstrumentChooseActivity_fluidsynthGetPresetName_1to_1ChooseActivity(
         JNIEnv *env, jobject thiz, jstring soundfont_path) {
 
+
+    int ibank = 0;
+    int iprog = 0;
+
+    int const maxPresets = 128 * 128;
+    int iPresets = 0;
+    int sf;
+    int more=1;
+    fluid_settings_t *temp_settings;
+    fluid_synth_t *temp_synth;
+    fluid_audio_driver_t *temp_adriver;
+
+
+
+
+        temp_settings = new_fluid_settings();
+        //fluid_settings_setnum(temp_settings, "synth.reverb.room-size", 0.8);
+        fluid_settings_setstr(temp_settings, "audio.driver", "oboe");
+        fluid_settings_setstr(temp_settings, "audio.oboe.performance-mode", "LowLatency");
+        fluid_settings_setstr(temp_settings, "audio.oboe.sharing-mode", "Exclusive");
+        fluid_settings_setnum(temp_settings, "synth.sample-rate", 48000);
+        fluid_settings_setint(temp_settings, "audio.periods", 2);
+        fluid_settings_setint(temp_settings, "audio.period-size", 256);
+
+
+
+    temp_synth = new_fluid_synth(temp_settings);
+
+    temp_adriver = new_fluid_audio_driver(temp_settings, temp_synth);
+
+    // Load sample soundfont
+    const char *soundfontPath = env->GetStringUTFChars(soundfont_path, nullptr);
+
+    sf= fluid_synth_sfload(temp_synth, soundfontPath, 1);
+
     fluid_preset_t *preset;
     fluid_sfont_t *pSoundFont = fluid_synth_get_sfont(temp_synth, 0);
+
+
 
     while(more) {
         preset = fluid_sfont_get_preset(pSoundFont, ibank, iprog);
 
         if(iPresets>maxPresets){
-
 
             more=0;
             jclass clazz = env->FindClass(
@@ -746,9 +1034,14 @@ Java_jp_kshoji_driver_midi_sample_InstrumentChooseActivity_fluidsynthGetPresetNa
 
         }else if(preset==NULL){
 
+
+            //more=0;
+
             //do nothing
 
         }else{
+
+
 
             jint jbank = fluid_preset_get_banknum(preset);
             jint jprog = iprog;
@@ -770,4 +1063,815 @@ Java_jp_kshoji_driver_midi_sample_InstrumentChooseActivity_fluidsynthGetPresetNa
         iprog++;
 
     }
+
+    delete_fluid_audio_driver(temp_adriver);
+    delete_fluid_synth(temp_synth);
+    delete_fluid_settings(temp_settings);
+
+
+}
+
+//Get List of all presetnames of loaded Soundfont
+extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthGetPresetName(
+        JNIEnv *env, jobject thiz, jstring soundfont_path) {
+    int ibank = 0;
+    int iprog = 0;
+
+    int const maxPresets = 128 * 128;
+    int iPresets = 0;
+    int sf;
+    int more=1;
+    fluid_settings_t *temp_settings;
+    fluid_synth_t *temp_synth;
+    fluid_audio_driver_t *temp_adriver;
+
+    temp_settings = new_fluid_settings();
+
+    //fluid_settings_setnum(temp_settings, "synth.reverb.room-size", 0.5);
+    fluid_settings_setstr(temp_settings, "audio.driver", "oboe");
+    fluid_settings_setstr(temp_settings, "audio.oboe.performance-mode", "LowLatency");
+    fluid_settings_setstr(temp_settings, "audio.oboe.sharing-mode", "Exclusive");
+    fluid_settings_setnum(temp_settings, "synth.sample-rate", 48000);
+    fluid_settings_setint(temp_settings, "audio.periods", 2);
+    fluid_settings_setint(temp_settings, "audio.period-size", 256);
+
+
+    temp_synth = new_fluid_synth(temp_settings);
+
+    temp_adriver = new_fluid_audio_driver(temp_settings, temp_synth);
+
+    // Load sample soundfont
+    const char *soundfontPath = env->GetStringUTFChars(soundfont_path, nullptr);
+
+    sf= fluid_synth_sfload(temp_synth, soundfontPath, 1);
+
+    fluid_preset_t *preset;
+    fluid_sfont_t *pSoundFont = fluid_synth_get_sfont(temp_synth, 0);
+
+
+    while(more) {
+        preset = fluid_sfont_get_preset(pSoundFont, ibank, iprog);
+
+        if(iPresets>maxPresets){
+
+            more=0;
+            jclass clazz = env->FindClass(
+                    "jp/kshoji/driver/midi/sample/MIDIDriverMultipleSampleActivity");
+
+            //jmethodID setInstrmentspinner = env->GetMethodID(clazz, "setInstrmentspinner", "()V");
+
+            jmethodID getPresetnamesFromList = env->GetMethodID(clazz, "getPresetnamesFromList", "()V");
+            env->CallVoidMethod(thiz, getPresetnamesFromList);
+
+        }else if(iprog>127){
+
+            iprog=-1;
+            ibank++;
+
+        }else if(preset==NULL){
+
+            //do nothing
+
+        }else{
+
+            jint jbank = fluid_preset_get_banknum(preset);
+            jint jprog = iprog;
+            jstring jstr = env->NewStringUTF(fluid_preset_get_name(preset));
+
+            jclass clazz = env->FindClass(
+                    "jp/kshoji/driver/midi/sample/MIDIDriverMultipleSampleActivity");
+
+            jmethodID setListeInstrumenteObjects = env->GetMethodID(clazz,"setListeInstrumenteObjects",
+                                                                    "(Ljava/lang/String;II)V");
+            //jmethodID setListeInstrumenteNames = env->GetMethodID(clazz, "setListeInstrumenteNames", "(Ljava/lang/String;)V");
+
+            env->CallVoidMethod(thiz, setListeInstrumenteObjects, jstr,jbank,jprog);
+
+
+        }
+
+        iPresets++;
+        iprog++;
+
+    }
+    delete_fluid_audio_driver(temp_adriver);
+    delete_fluid_synth(temp_synth);
+    delete_fluid_settings(temp_settings);
+
+
+}
+extern "C"
+JNIEXPORT jint JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_deleteFluidsynth_1Synth_1List_1Final(
+        JNIEnv *env, jobject thiz) {
+
+    if(myfluidsynthList.empty()){
+
+
+        return 0;
+
+    }else {
+
+
+        list<MyFluidsynth *>::iterator it;
+        for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+
+            it.operator*()->deleteFluidSynth();
+
+            it = myfluidsynthList.erase(it);
+            delete *it;
+
+        }
+        myfluidsynthList.clear();
+
+        return 1;
+
+    }
+
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_util_InstrumentButton_addInstrumentToFluidsynthList(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jstring soundfontpath,
+                                                                                      jint usb_device_id,
+                                                                                      jint channel,
+                                                                                      jint bank,
+                                                                                      jint programm) {
+
+    myfluidsynthList.push_back(new MyFluidsynth(env,soundfontpath,usb_device_id,channel,bank,programm));
+
+    if(myfluidsynthList.empty()){
+
+        //return 0;
+    }
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_util_InstrumentButton_deleteInstrumentFromFluidsynthList(
+        JNIEnv *env, jobject thiz, jint channel, jint i_usb_id, jstring str_presetname) {
+
+    list<MyFluidsynth *>::iterator it;
+
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(str_presetname, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            i_usb_id == listUsbId) {
+
+            it.operator*()->deleteFluidSynth();
+
+            it = myfluidsynthList.erase(it);
+            //env->CallVoidMethod(thiz, setText,jstr);
+            //return 1;
+            break;
+
+
+
+        } else {
+
+            //return 0;
+            break;
+        }
+
+
+    }
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthChorusActive(JNIEnv *env,
+                                                                           jobject thiz,
+                                                                           jint global_channel,
+                                                                           jint usb_device_id,
+                                                                           jstring instr,
+                                                                           jboolean all) {
+    // TODO: implement setFluidsynthChorusActive()
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId && all== false) {
+
+            it.operator*()->setSynthSettingsChorusActive();
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsChorusActive();
+
+
+        }
+    }
+
+
+
+}extern "C"
+JNIEXPORT jint JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthReverbActive(JNIEnv *env,
+                                                                           jobject thiz,
+                                                                           jint global_channel,
+                                                                           jint usb_device_id,
+                                                                           jstring instr,
+                                                                           jboolean all) {
+    // TODO: implement setFluidsynthReverbActive()
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId && all== false) {
+
+            it.operator*()->setSynthSettingsReverbActive();
+
+            return 1;
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsReverbActive();
+
+            return 0;
+
+        }
+    }
+
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_fluidsynthListSetVelocity(JNIEnv *env,
+                                                                           jobject thiz,
+                                                                           jint global_channel,
+                                                                           jint usb_device_id,
+                                                                           jstring instr,
+                                                                           jint int_veloc) {
+    // TODO: implement fluidsynthListSetVelocity()
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            it.operator*()->setVelocity(int_veloc);
+            break;
+
+
+
+        }
+    }
+
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_fluidsynthListsetFixedVel(JNIEnv *env,
+                                                                           jobject thiz,
+                                                                           jint channel,
+                                                                           jint i_usb_id,jstring instr,
+                                                                           jboolean fixed) {
+    // TODO: implement fluidsynthListsetFixedVel()
+
+
+
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            i_usb_id == listUsbId) {
+
+
+            it.operator*()->setBoolFixedVelocity(fixed);
+            break;
+
+
+
+        }
+    }
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_fluidsynthListSetVelocity_1For_1All(JNIEnv *env,
+                                                                                     jobject thiz,
+                                                                                     jint global_channel,
+                                                                                     jint usb_device_id,
+                                                                                     jint int_velocity) {
+    // TODO: implement fluidsynthListSetVelocity_For_All()
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        //const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        //const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (usb_device_id == listUsbId) {
+
+
+            it.operator*()->setVelocity(int_velocity);
+            break;
+
+
+
+        }
+    }
+
+
+
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1Synthesizer_1Settings(
+        JNIEnv *env, jobject thiz, jint global_channel, jint usb_device_id, jstring instr,
+        jstring synth_setting, jfloat synth_setting_value, jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_Synthesizer_Settings()
+
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId && !all) {
+
+            it.operator*()->setSynthSettings(env,synth_setting,synth_setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettings(env,synth_setting,synth_setting_value);
+
+
+        }
+    }
+
+
+
+}extern "C"
+JNIEXPORT jint JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1ListDeleteInstrumentOfUsbId(
+        JNIEnv *env, jobject thiz, jint global_channel, jint usb_device_id) {
+
+
+    list<MyFluidsynth *>::iterator it;
+
+
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (usb_device_id != listUsbId) {
+
+
+
+            ///delete *it;
+
+        }else{
+            it.operator*()->deleteFluidSynth();
+
+            it = myfluidsynthList.erase(it);
+
+
+
+        }
+/*
+        if (usb_device_id == listUsbId) {
+
+            it.operator*()->deleteFluidSynth();
+
+            it = myfluidsynthList.erase(it--);
+
+            ///delete *it;
+
+        }
+
+*/
+
+
+
+
+    }
+
+
+
+    return 1;
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ChorusDepth(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jint global_channel,
+                                                                                      jint usb_device_id,
+                                                                                      jstring instr,
+                                                                                      jfloat setting_value,
+                                                                                      jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_ChorusDepth()
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        it.operator*()->setSynthSettingsChorusDepth(env,setting_value);
+
+
+        /*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsChorusDepth(env,setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsChorusDepth(env,setting_value);
+
+
+        }*/
+    }
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ChorusLevel(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jint global_channel,
+                                                                                      jint usb_device_id,
+                                                                                      jstring instr,
+                                                                                      jfloat setting_value,
+                                                                                      jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_ChorusLevel()
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+
+        it.operator*()->setSynthSettingsChorusLevel(env,setting_value);
+
+/*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsChorusLevel(env,setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsChorusLevel(env,setting_value);
+
+
+        }*/
+    }
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ChorusNr(JNIEnv *env,
+                                                                                   jobject thiz,
+                                                                                   jint global_channel,
+                                                                                   jint usb_device_id,
+                                                                                   jstring instr,
+                                                                                   jint setting_value,
+                                                                                   jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_ChorusNr()
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        it.operator*()->setSynthSettingsChorusNr(env,setting_value);
+
+        /*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsChorusNr(env,setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsChorusNr(env,setting_value);
+
+
+        }*/
+    }
+
+
+
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ChorusSpeed(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jint global_channel,
+                                                                                      jint usb_device_id,
+                                                                                      jstring instr,
+                                                                                      jfloat setting_value,
+                                                                                      jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_ChorusSpeed()
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        it.operator*()->setSynthSettingsChorusSpeed(env,setting_value);
+
+
+        /*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId && !all) {
+
+            it.operator*()->setSynthSettingsChorusSpeed(env,setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsChorusSpeed(env,setting_value);
+
+
+        }*/
+    }
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ReverbDamp(JNIEnv *env,
+                                                                                     jobject thiz,
+                                                                                     jint global_channel,
+                                                                                     jint usb_device_id,
+                                                                                     jstring instr,
+                                                                                     jfloat setting_value,
+                                                                                     jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_ReverbDamp()
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        it.operator*()->setSynthSettingsReverbDamp(env,setting_value);
+
+        /*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsReverbDamp(env,setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsReverbDamp(env,setting_value);
+
+
+        }*/
+    }
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ReverbLevel(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jint global_channel,
+                                                                                      jint usb_device_id,
+                                                                                      jstring instr,
+                                                                                      jfloat setting_value,
+                                                                                      jboolean all) {
+    // TODO: implement Fluidsynth_Synth_List_ReverbLevel()
+
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        it.operator*()->setSynthSettingsReverbLevel(env,setting_value);
+
+        /*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+        usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsReverbLevel(env,setting_value);
+
+
+            break;
+
+        }else if(all){
+
+            it.operator*()->setSynthSettingsReverbLevel(env,setting_value);
+
+
+        }*/
+    }
+
+}extern "C"
+JNIEXPORT jint JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ReverbRoomsize(
+        JNIEnv *env, jobject thiz, jint global_channel, jint usb_device_id, jstring instr,
+        jfloat setting_value, jboolean all) {
+
+
+
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+
+        it.operator*()->setSynthSettingsReverbRS(env,setting_value);
+        /*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsReverbRS(env,setting_value);
+
+            return 1;
+
+            break;
+
+        }else if(all== true){
+
+            it.operator*()->setSynthSettingsReverbRS(env,setting_value);
+
+            return 0;
+
+        }
+        */
+
+    }
+    return 1;
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_Fluidsynth_1Synth_1List_1ReverbWidth(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jint global_channel,
+                                                                                      jint usb_device_id,
+                                                                                      jstring instr,
+                                                                                      jfloat setting_value,
+                                                                                      jboolean all) {
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+        it.operator*()->setSynthSettingsReverbWidth(env, setting_value);
+/*
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+            it.operator*()->setSynthSettingsReverbWidth(env, setting_value);
+
+
+            break;
+
+        } else if (all) {
+
+            it.operator*()->setSynthSettingsReverbWidth(env, setting_value);
+
+
+        }*/
+    }
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_fluidsynthListSetTranspo(JNIEnv *env, jobject thiz,
+                                                                          jint global_channel,
+                                                                          jint usb_device_id,
+                                                                          jstring instr,
+                                                                          jint int_transpo) {
+    // TODO: implement fluidsynthListSetTranspo()
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            it.operator*()->settTranspo(int_transpo);
+            break;
+
+
+
+        }
+    }
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_Fluidsynth_1Synth_1List_1ProgramChange_1drums(
+        JNIEnv *env, jobject thiz, jint channel, jint bank, jint progr, jstring str_presetname,
+        jint usb_device_id) {
+
+    list<MyFluidsynth*>::iterator it;
+    for(it = myfluidsynthList.begin();it != myfluidsynthList.end();it++){
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(str_presetname, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            it.operator*()->setProgramchange(channel, progr, bank);
+
+
+        }
+
+    }
+
 }

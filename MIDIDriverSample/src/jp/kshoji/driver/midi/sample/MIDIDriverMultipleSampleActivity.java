@@ -27,7 +27,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -60,6 +59,7 @@ import jp.kshoji.driver.midi.sample.util.*;
  * @author C.Kirste/K.Shoji
  */
 public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivity implements View.OnClickListener, View.OnTouchListener{
+	//Todo: Registrationbuttons, programchange drumbutton
 
 	private static final String TAG = "MIDIDriverMultiple";
 
@@ -792,7 +792,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_test);//neu);
+		setContentView(R.layout.main_layout);//neu);
 
 		btnDrums = (Button) findViewById(R.id.btnDrums);
 		btnDrums.setOnClickListener(new View.OnClickListener() {

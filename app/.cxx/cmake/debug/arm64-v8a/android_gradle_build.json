@@ -1,0 +1,65 @@
+{
+  "stringTable": {
+    "0": "C:/Users/User/StudioProjects/USB-MIDI-Driver/app/.cxx/cmake/debug/arm64-v8a",
+    "1": "--target=aarch64-none-linux-android21 --gcc-toolchain=C:/Users/User/AppData/Local/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/User/AppData/Local/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dnative_lib_EXPORTS -IC:/Users/User/StudioProjects/USB-MIDI-Driver/app/src/main/cpp/fluidsynth/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\.cxx\\cmake\\debug\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\.cxx\\cmake\\debug\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Debug-arm64-v8a": {
+      "buildCommand": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\.cxx\\cmake\\debug\\arm64-v8a\" native-lib",
+      "buildType": "debug",
+      "toolchain": "1812405087",
+      "abi": "arm64-v8a",
+      "artifactName": "native-lib",
+      "files": [
+        {
+          "src": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\native-lib.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libnative-lib.so",
+      "runtimeFiles": [
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libc++_shared.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libcharset.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libffi.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libFLAC.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libfluidsynth.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libfluidsynth-assetloader.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libgio-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libglib-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libgmodule-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libgobject-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libgthread-2.0.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libiconv.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libintl.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\liboboe.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libogg.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libsndfile.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libvorbis.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libvorbisenc.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libvorbisfile.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\libz.so",
+        "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\app\\src\\main\\cpp\\fluidsynth\\lib\\arm64-v8a\\preloadable_libiconv.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "1812405087": {
+      "cppCompilerExecutable": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

@@ -1,6 +1,8 @@
 package jp.kshoji.driver.midi.sample.util;
 
-public class SF2Preset {
+import java.io.Serializable;
+
+public class SF2Preset implements Serializable {
     private String presetname;
     private int presetbank;
     private int presetprogr;
