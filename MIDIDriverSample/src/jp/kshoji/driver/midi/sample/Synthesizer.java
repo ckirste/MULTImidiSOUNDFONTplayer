@@ -19,6 +19,21 @@ public class Synthesizer {
 
     }
 
+    public void noteOn(int channel,int note, int velocity, int iUsbId){
+
+
+        fluidsynth_ListSendNoteOnMessage(channel,note,velocity,iUsbId);
+
+
+    }
+    public void noteOff(int channel,int note, int iUsbId){
+
+
+        fluidsynth_ListSendNoteOffMessage(channel,note,iUsbId);
+
+
+    }
+
 
     public native void fluidsynth_ListSendNoteOnMessage(int channel,int note, int velocity, int iUsbId);
 

@@ -693,7 +693,6 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynth_1ListSendNoteOnMessage(
         JNIEnv *env, jobject thiz, jint channel, jint note, jint velocity, jint i_usb_id) {
-    // TODO: implement fluidsynth_ListSendNoteOnMessage()
 
 
     list<MyFluidsynth*>::iterator it;
@@ -1874,4 +1873,39 @@ Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_Fluidsynth_1S
 
     }
 
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_Synthesizer_fluidsynth_1ListSendNoteOnMessage(JNIEnv *env,
+                                                                                jobject thiz,
+                                                                                jint channel,
+                                                                                jint note,
+                                                                                jint velocity,
+                                                                                jint i_usb_id) {
+
+
+    list<MyFluidsynth*>::iterator it;
+    for(it = myfluidsynthList.begin();it != myfluidsynthList.end();it++){
+
+
+        it.operator*()->onNoteOn(channel,note,velocity,i_usb_id);
+
+    }
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_Synthesizer_fluidsynth_1ListSendNoteOffMessage(JNIEnv *env,
+                                                                                 jobject thiz,
+                                                                                 jint channel,
+                                                                                 jint note,
+                                                                                 jint i_usb_id) {
+
+    list<MyFluidsynth*>::iterator it;
+    for(it = myfluidsynthList.begin();it != myfluidsynthList.end();it++){
+
+
+
+        it.operator*()->onNoteOff(channel,note,i_usb_id);
+
+    }
 }
