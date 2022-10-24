@@ -1174,7 +1174,8 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 
 
-	@TargetApi(Build.VERSION_CODES.KITKAT)
+    /*
+    @TargetApi(Build.VERSION_CODES.KITKAT)
 	private String copyAssetToTmpFile(String fileName) throws IOException {
 		try (InputStream is = getAssets().open(fileName)) {
 			String tempFileName = "tmp_" + fileName;
@@ -1189,6 +1190,10 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 		}
 	}
 
+     */
+
+
+    /*
 	private void hideDisplayPiano(){
 
 
@@ -1201,6 +1206,8 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 
 	}
+
+     */
 
 
 
@@ -1540,10 +1547,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	//#################   native funktions  ################################################################################################################
 
 
-
-	public native int fluidsynth_ListDeleteInstrumentOfUsbId(int global_channel, int usbDeviceId);
-
-	public native int startFluidsynth_Add_Synth_to_List(String soundfontPath, int usbID,int channel,int bank, int progr);
+    public native int startFluidsynth_Add_Synth_to_List(String soundfontPath, int usbID,int channel,int bank, int progr);
 
     public native void fluidsynth_ListSendNoteOnMessage(int channel,int note, int velocity, int iUsbId);
 
@@ -1553,9 +1557,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
     public native int fluidsynth_ListDeleteInstrumentFinal(int channel, int iUsbId, String strPresetname);
 
-    public native int deleteFluidsynth_Synth_List();
-
-	public native int deleteFluidsynth_Synth_List_Final();
+    public native int deleteFluidsynth_Synth_List_Final();
 
 	public native void Fluidsynth_Synth_List_ProgramChange_drums(int channel, int bank, int progr, String strPresetname,int drumsId);
 
