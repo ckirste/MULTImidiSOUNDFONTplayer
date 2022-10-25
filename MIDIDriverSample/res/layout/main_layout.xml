@@ -13,30 +13,25 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:id="@+id/layOpenSf"
-		android:visibility="gone"
 		android:orientation="horizontal">
 
-		<jp.kshoji.driver.midi.sample.util.InstrumentButton
-			android:layout_width="wrap_content"
+		<SeekBar
+			android:layout_width="150dp"
 			android:layout_height="wrap_content"
-			android:text="Instrumentbutton"
-
-			android:id="@+id/instrBtnGetInstrumentsOfStorage"/>
+			android:max="1000"
+			android:progress="50"
+			android:id="@+id/mainSeekBarHallEffect"
+			android:layout_gravity="center_vertical"/>
 
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Open SF2"
-			android:id="@+id/openInstr"/>
+			android:text="Keyboard"
+			android:id="@+id/btnKeyboardAktivity"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:id="@+id/txtviewUsbName"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_gravity="center_vertical|center_horizontal"/>
 
 	</LinearLayout>
+
 
 	<LinearLayout
 		android:layout_width="fill_parent"
@@ -44,22 +39,7 @@
 		android:id="@+id/seekbarlayout"
 		android:orientation="horizontal">
 
-		<SeekBar
-			android:layout_width="200dp"
-			android:layout_height="wrap_content"
-			android:max="100"
-			android:progress="50"
-			android:id="@+id/mainSeekBarHallEffect"
-			android:visibility="gone"/>
 
-		<TextView
-			android:id="@+id/tvHall"
-			android:layout_width="wrap_content"
-
-			android:layout_height="wrap_content"
-			android:text="Hall"
-			android:visibility="gone"
-			android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	</LinearLayout>
 
@@ -147,7 +127,8 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/layButtTast">
+		android:id="@+id/layButtTast"
+		android:visibility="gone">
 
 		<Button
 			android:id="@+id/buttonC"
@@ -261,7 +242,8 @@
 		<LinearLayout
 			android:layout_width="120dp"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:id="@+id/llVelocity">
 
 			<TableLayout
 				android:layout_width="fill_parent"

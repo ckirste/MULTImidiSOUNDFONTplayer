@@ -225,6 +225,10 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 	private boolean bool_multi_mode = true;
 
+    Button btnKeyboardAktivity;
+    private SeekBar seekhe;
+    private LinearLayout llVelocity;
+
 
 	Spinner spinnVelocity;
 	private LinearLayout layContainerUsbDevices;
@@ -363,6 +367,17 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 		startActivityForResult(intent,CHOOSE_INSTRUMENT_ACTIVITY_CODE);
 	}
 
+	private void stsrtIntentPianoVieww(){
+
+
+
+		Intent intent = new Intent(MIDIDriverMultipleSampleActivity.this, KeyboardActivity.class);
+
+
+		startActivity(intent);
+
+
+	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -793,6 +808,60 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_layout);//neu);
+
+        btnKeyboardAktivity = (Button)findViewById(R.id.btnKeyboardAktivity);
+
+        btnKeyboardAktivity.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View p1)
+            {
+
+                stsrtIntentPianoVieww();
+
+                // TODO: Implement this method
+            }
+
+
+
+
+        });
+
+        llVelocity = (LinearLayout)findViewById(R.id.llVelocity);
+        seekhe = (SeekBar) findViewById(R.id.mainSeekBarHallEffect);
+
+
+        seekhe.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar p1, int p2, boolean p3)
+            {
+                // TODO: Implement this method
+                ViewGroup.LayoutParams params = llVelocity.getLayoutParams();
+// Changes the height and width to the specified *pixels*
+                //params.height = 100;
+                params.width = p1.getProgress();
+                llVelocity.setLayoutParams(params);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar p1)
+            {
+                // TODO: Implement this method
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar p1)
+            {
+                // TODO: Implement this method
+
+
+
+            }
+
+
+
+        });
 
 		btnDrums = (Button) findViewById(R.id.btnDrums);
 		btnDrums.setOnClickListener(new View.OnClickListener() {
