@@ -12,19 +12,23 @@ import android.support.v7.app.*;
 
 public class KeyboardActivity extends Activity
 {
-	
+	int intTranspose;
 	float rotation = 0.0f;
-	
+	Synthesizer synth;
+	private int global_channel=0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.piano_view_layout);
-		
+
+		synth = new Synthesizer(this);
+
+
 		OnTouchListener onToneButtonTouchListenerTop = new OnTouchListener() {
 
 
@@ -37,16 +41,23 @@ public class KeyboardActivity extends Activity
 				String tagKey = v.getTag().toString();
 
 
+				int note = 60 + Integer.parseInt((String) v.getTag())+intTranspose-100+12;
+
+
 				switch (event.getAction())
 				{
 					case MotionEvent.ACTION_DOWN:
 
+						synth.noteOn(global_channel,note,127,0);
 
 						v.setBackgroundResource(R.drawable.rect_blue_key);
 
 
 						break;
 					case MotionEvent.ACTION_UP:
+
+						synth.noteOff(global_channel,note,0);
+
 
 						if(tagKey.equalsIgnoreCase("101") || tagKey.equalsIgnoreCase("103") || 
 						   tagKey.equalsIgnoreCase("106") || tagKey.equalsIgnoreCase("108") || 
@@ -99,6 +110,10 @@ public class KeyboardActivity extends Activity
 
 				String tagKey = v.getTag().toString();
 				//int note = 60 + Integer.parseInt((String) v.getTag())+intTranspose;
+
+
+				int note = 60 + Integer.parseInt((String) v.getTag())+intTranspose;
+
 
 
 

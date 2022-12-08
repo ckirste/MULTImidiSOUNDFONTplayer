@@ -3,7 +3,6 @@ package jp.kshoji.driver.midi.sample;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,7 +41,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,7 @@ import jp.kshoji.driver.midi.sample.util.*;
  * @author C.Kirste/K.Shoji
  */
 public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivity implements View.OnClickListener, View.OnTouchListener{
-	//Todo: Registrationbuttons, programchange drumbutton
+	//
 
 	private static final String TAG = "MIDIDriverMultiple";
 
@@ -367,7 +366,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 		startActivityForResult(intent,CHOOSE_INSTRUMENT_ACTIVITY_CODE);
 	}
 
-	private void stsrtIntentPianoVieww(){
+	private void startIntentPianoView(){
 
 
 
@@ -807,6 +806,8 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		setContentView(R.layout.main_layout);//neu);
 
         btnKeyboardAktivity = (Button)findViewById(R.id.btnKeyboardAktivity);
@@ -817,7 +818,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
             public void onClick(View p1)
             {
 
-                stsrtIntentPianoVieww();
+                startIntentPianoView();
 
                 // TODO: Implement this method
             }
@@ -1043,62 +1044,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 		final int channel =global_channel;//0; //TODO: get from spinner
 
-/*
-		txtRoomsize = (TextView) findViewById(R.id.tvHall);
 
-		seekbarRoomSize = (SeekBar) findViewById(R.id.mainSeekBarHallEffect);
-		//seekbarHallEffect.setMin(0);
-		//seekbarHallEffect.setMax(10000);
-		//seekbarHallEffect.setMinimumWidth(5000);
-
-
-
-
-		seekbarRoomSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-
-
-			@Override
-			public void onProgressChanged(SeekBar p1, int p2, boolean p3)
-			{
-
-
-
-				floatRoomsize = (float) ((float)p2/100.0);
-
-				txtRoomsize.setText(""+floatRoomsize);
-
-
-
-				//floatHallEffect = p2;
-			}
-
-			@Override
-			public void onStartTrackingTouch(SeekBar p1)
-			{
-				// TODO: Implement this method
-			}
-
-			@Override
-			public void onStopTrackingTouch(SeekBar p1)
-			{
-				// TODO: Implement this method
-
-				//testToast("" + floatRoomsize);
-				//usbSynth0.setEffects(floatHallEffect);
-
-				txtRoomsize.setText(""+floatRoomsize);
-
-
-				Fluidsynth_Synth_List_RoomsizeChange(floatRoomsize);
-
-
-			}
-
-
-		});
-
-
- */
 
 		OnTouchListener onToneButtonTouchListener = new OnTouchListener() {
 
@@ -2141,23 +2087,27 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	private void setInstrumentMode(){
 
 
-		int i = 0;
-		InstrumentButton ib = (InstrumentButton) layContainerSelIns.getChildAt(i);
-		if(!ib.isBoolVolumeOn()){
-
-			tempBtnInstr = ib;
-
-			//setInstrumentMuteOff();
-
-			ib.setBoolVolumeOn(true);
-
-			//TODO: evtl. wieder Rückgängig machen
-			addInstrumentTo_FluidSynthList_();
+	    if(layContainerSelIns.getChildCount()>1) {
 
 
 
+        }else{
+            int i = 0;
+            InstrumentButton ib = (InstrumentButton) layContainerSelIns.getChildAt(i);
+            if (!ib.isBoolVolumeOn()) {
 
-		}
+                tempBtnInstr = ib;
+
+                //setInstrumentMuteOff();
+
+                ib.setBoolVolumeOn(true);
+
+                //TODO: evtl. wieder Rückgängig machen
+                addInstrumentTo_FluidSynthList_();
+
+
+            }
+        }
 
 	}
 
