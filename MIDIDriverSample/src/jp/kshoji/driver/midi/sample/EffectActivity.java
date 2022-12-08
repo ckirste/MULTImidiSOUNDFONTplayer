@@ -16,7 +16,11 @@ public class EffectActivity extends Activity
         System.loadLibrary("native-lib");
     }
 
-
+    private boolean boolSplitNotes=false;
+    Button btnMuteNoteGreaterThan;
+    boolean boolMuteNotesSmalerThan=false;
+    boolean boolMuteNotesGreaterThan=false;
+    Button btnMuteNoteSmalerThan;
 
     Button btnPitchMin12;
 
@@ -774,6 +778,88 @@ public class EffectActivity extends Activity
             }
         });
         seekReverbWidth.setMax(100);
+
+        btnMuteNoteGreaterThan = (Button) findViewById(R.id.btnMuteNoteGreater);
+        btnMuteNoteSmalerThan = (Button) findViewById(R.id.btnMuteNoteSmaler);
+
+        //btnMuteNoteGreaterThan.getBackground().getColorFilter();
+        btnMuteNoteGreaterThan.setOnClickListener(new OnClickListener(){
+
+            @Override
+            public void onClick(View p1)
+            {
+
+                Button btn = (Button)p1;
+                // TODO: Implement this method
+                if(boolSplitNotes){
+
+                    boolSplitNotes=false;
+                    boolMuteNotesGreaterThan=false;
+
+
+                    btn.setText("M>");
+
+
+                }else{
+
+                    boolSplitNotes=true;
+
+                    boolMuteNotesGreaterThan=true;
+
+                    boolMuteNotesSmalerThan=false;
+                    btnMuteNoteSmalerThan.setText("M<");
+
+                    btn.setText("M>"+"*");
+
+                }
+
+            }
+
+
+
+
+        });
+
+        btnMuteNoteSmalerThan.setOnClickListener(new OnClickListener(){
+
+
+
+            @Override
+            public void onClick(View p1)
+            {
+                // TODO: Implement this method
+                Button btn = (Button)p1;
+
+
+                if(boolSplitNotes){
+
+                    boolSplitNotes=false;
+                    boolMuteNotesSmalerThan=false;
+
+                    btn.setText("M<");
+
+
+                }else{
+
+                    boolSplitNotes=true;
+
+                    boolMuteNotesSmalerThan=true;
+                    boolMuteNotesGreaterThan=false;
+                    btnMuteNoteGreaterThan.setText("M>");
+
+                    btn.setText("M<"+"*");
+
+
+                }
+            }
+
+
+
+
+
+
+
+        });
 
     }
 
