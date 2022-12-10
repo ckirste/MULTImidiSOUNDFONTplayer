@@ -16,13 +16,14 @@ public class EffectActivity extends Activity
         System.loadLibrary("native-lib");
     }
 
-    private boolean boolSplitNotes=false;
-    Button btnMuteNoteGreaterThan;
+    boolean boolSplitNotes=false;
     boolean boolMuteNotesSmalerThan=false;
     boolean boolMuteNotesGreaterThan=false;
-    Button btnMuteNoteSmalerThan;
 
-    Button btnPitchMin12;
+    Button btnMuteNoteSmalerThan;
+    Button btnMuteNoteGreaterThan;
+
+
 
     Button btnOk;
     Button btnDel;
@@ -35,7 +36,7 @@ public class EffectActivity extends Activity
     //private int intVolume=0;
     TextView textvVol;
 
-    TextView textvChorusDepth; //(TextView)
+    TextView textvChorusDepth;
     TextView textvChorusLev;
     TextView textvChorusNr;
     TextView textvChorusSpeed;
@@ -76,9 +77,14 @@ public class EffectActivity extends Activity
     private float floatProgressChS;
     private float floatProgressChL;
     private float floatProgressChD;
+
     private Button btnPitchPlus12;
+    Button btnPitchMin12;
+    private Button btnPitch0;
+
     private int transpo=0;
 
+    private final String headline = "Instrument Effects";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -242,7 +248,7 @@ public class EffectActivity extends Activity
 
                 transpo=transpo-12;
                 testToast(""+transpo);
-                //textvInstr.setText(textvInstr.getText()+" "+transpo);
+                textvInstr.setText(headline+" "+instr+": "+transpo);
                 fluidsynthListSetTranspo(global_channel,usbDeviceId,instr,transpo);
             }
         });
@@ -255,7 +261,19 @@ public class EffectActivity extends Activity
 
                 transpo=transpo+12;
                 testToast(""+transpo);
-                //textvInstr.setText(textvInstr.getText()+" "+transpo);
+                textvInstr.setText(headline+" "+instr+": "+transpo);
+                fluidsynthListSetTranspo(global_channel,usbDeviceId,instr,transpo);
+            }
+        });
+
+        btnPitch0 = (Button)findViewById(R.id.btn0);
+        btnPitch0.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                transpo=0;
+                testToast(""+transpo);
+                textvInstr.setText(headline+" "+instr+": "+transpo);
                 fluidsynthListSetTranspo(global_channel,usbDeviceId,instr,transpo);
             }
         });
@@ -289,100 +307,6 @@ public class EffectActivity extends Activity
 
                         break;
 
-                    /*chorus
-                    case R.id.seekChorusDepth:
-
-                        floatProgressChD=(float)p2;
-                        textvChorusDepth.setText(""+floatProgress);
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.chorus.depth",floatProgress,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ChorusDepth(global_channel,usbDeviceId,
-                                //instr,floatProgressChD,boolApplyAll);
-
-
-                        break;
-
-                    case R.id.seekChorusLev:
-
-                        floatProgressChL=(float)p2;
-                        textvChorusLev.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.chorus.level",floatProgress,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ChorusLevel(global_channel,usbDeviceId,
-                                //instr,floatProgressChL,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekChorusNr:
-
-                        textvChorusNr.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_ChorusNr(global_channel,usbDeviceId,
-                                   //instr,p2,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekChorusSpeed:
-
-                        floatProgressChS=(float)p2;
-                        textvChorusSpeed.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.chorus.speed",floatProgress,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ChorusSpeed(global_channel,usbDeviceId,
-                               // instr,floatProgressChS,boolApplyAll);
-
-
-                        break;
-
-                    ////reverb
-                    case R.id.seekReverbDamp:
-
-                        floatProgressRbD=(float)p2/100;
-                        textvReverbDamp.setText(""+floatProgress);
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.damp",floatProgress/100,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ReverbDamp(global_channel,usbDeviceId,
-                               // instr,floatProgressRbD,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekReverbLevel:
-
-                        floatProgressRbL=(float)p2/100;
-                        textvReverbLevel.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.level",floatProgress/100,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ReverbLevel(global_channel,usbDeviceId,
-                                //instr,floatProgressRbL,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekReverbRoomsz:
-
-                        floatProgressRbRS=(float) p2/100;
-                        textvReverbRoomsz.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.room-size",floatProgress/100,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ReverbRoomsize(global_channel,usbDeviceId,
-                                //instr,floatProgressRbRS,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekReverbWidth:
-
-                        floatProgressRbW=(float)p2;
-                        textvReverbWidth.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.width",floatProgress,boolApplyAll);
-
-                        //Fluidsynth_Synth_List_ReverbWidth(global_channel,usbDeviceId,
-                                //instr,floatProgressRbW,boolApplyAll);
-
-                        break;*/
                 }
 
             }
@@ -418,101 +342,7 @@ public class EffectActivity extends Activity
 
                         break;
 
-                    /*//chorus
-                    case R.id.seekChorusDepth:
 
-                        floatProgressChD=(float)p1.getProgress();
-                        //textvChorusDepth.setText(""+floatProgress);
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.chorus.depth",floatProgress,boolApplyAll);
-
-                        Fluidsynth_Synth_List_ChorusDepth(global_channel,usbDeviceId,
-                                instr,floatProgressChD,boolApplyAll);
-
-
-                        break;
-
-                    case R.id.seekChorusLev:
-
-                        floatProgressChL=(float)p1.getProgress();
-                        //textvChorusLev.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.chorus.level",floatProgress,boolApplyAll);
-
-                        Fluidsynth_Synth_List_ChorusLevel(global_channel,usbDeviceId,
-                                instr,floatProgressChL,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekChorusNr:
-
-                        //textvChorusNr.setText(""+floatProgress);
-
-                        Fluidsynth_Synth_List_ChorusNr(global_channel,usbDeviceId,
-                                instr,p1.getProgress(),boolApplyAll);
-
-                        break;
-
-                    case R.id.seekChorusSpeed:
-
-                        floatProgressChS=(float)p1.getProgress();
-                        //textvChorusSpeed.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.chorus.speed",floatProgress,boolApplyAll);
-
-                        Fluidsynth_Synth_List_ChorusSpeed(global_channel,usbDeviceId,
-                                instr,floatProgressChS,boolApplyAll);
-
-
-                        break;*/
-
-                    /*//reverb
-                    case R.id.seekReverbDamp:
-
-                        floatProgressRbD=(float)p1.getProgress()/100;
-                        //textvReverbDamp.setText(""+floatProgress);
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.damp",floatProgress/100,boolApplyAll);
-
-                        Fluidsynth_Synth_List_ReverbDamp(global_channel,usbDeviceId,
-                                instr,floatProgressRbD,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekReverbLevel:
-
-                        floatProgressRbL=(float)p1.getProgress()/100;
-                        //textvReverbLevel.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.level",floatProgress/100,boolApplyAll);
-
-                        Fluidsynth_Synth_List_ReverbLevel(global_channel,usbDeviceId,
-                                instr,floatProgressRbL,boolApplyAll);
-
-                        break;
-
-                    case R.id.seekReverbRoomsz:
-
-                        floatProgressRbRS=(float) p1.getProgress()/100;
-                        //textvReverbRoomsz.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.room-size",floatProgress/100,boolApplyAll);
-
-                        int room = Fluidsynth_Synth_List_ReverbRoomsize(global_channel,usbDeviceId,
-                                instr,floatProgressRbRS,boolApplyAll);
-
-                       // textvInstr.setText(textvInstr.getText()+""+room);
-                        break;
-
-                    case R.id.seekReverbWidth:
-
-                        floatProgressRbW=(float)p1.getProgress();
-                        //textvReverbWidth.setText(""+floatProgress);
-
-                        //Fluidsynth_Synth_List_Synthesizer_Settings(global_channel,usbDeviceId,instr,"synth.reverb.width",floatProgress,boolApplyAll);
-
-                        Fluidsynth_Synth_List_ReverbWidth(global_channel,usbDeviceId,
-                                instr,floatProgressRbW,boolApplyAll);
-
-                        break;*/
                 }
 
 
@@ -875,9 +705,6 @@ public class EffectActivity extends Activity
     public native void fluidsynthListsetFixedVel(int channel, int iUsbId, String instr,boolean fixed);
 
     public native void fluidsynthListSetVelocity_For_All(int global_channel, int usbDeviceId, int intVelocity);
-
-    public native void Fluidsynth_Synth_List_Synthesizer_Settings(int global_channel, int usbDeviceId, String instr,
-                                                                  String synthSetting, float synthSettingValue, boolean all);
 
     public native void Fluidsynth_Synth_List_ChorusDepth(int global_channel, int usbDeviceId,
                                                          String instr,float settingValue, boolean all);

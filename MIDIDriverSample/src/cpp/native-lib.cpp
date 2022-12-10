@@ -48,6 +48,11 @@ private:
     int local_velocity=127;
     bool boolFixedVelocity=true;
 
+    bool boolSplitNotes=false;
+    bool boolMuteNotesSmalerThan=false;
+    bool boolMuteNotesGreaterThan=false;
+
+    int local_note;
 
 
 
@@ -401,11 +406,37 @@ public:
     void onNoteOn(jint channel, jint note,
                   jint velocity,jint usbId){
 
-        if(usbId==this->usbId){//maybe it has to be &&
+        if(usbId==this->usbId){
 
             int transp=transpo;
             int velo = getLocal_velocity(velocity);
-            fluid_synth_noteon( synth, channel, note + transp, velo );
+
+            if(boolMuteNotesGreaterThan){
+
+                if(note>local_note){
+
+
+
+                }else {
+
+                    fluid_synth_noteon(synth, channel, note + transp, velo);
+
+                }
+            }else if(boolMuteNotesSmalerThan){
+
+                if(note<local_note){
+
+
+
+                }else{
+
+                    fluid_synth_noteon(synth, channel, note + transp, velo);
+                }
+
+            }else{
+
+                fluid_synth_noteon(synth, channel, note + transp, velo);
+            }
 
 
         }else{
@@ -422,7 +453,40 @@ public:
 
 
             int transp=transpo;
+
+            if(boolMuteNotesGreaterThan){
+
+                if(note>local_note){
+
+
+
+                }else {
+
+                    fluid_synth_noteoff(synth, channel, note + transp);
+
+                }
+            }else if(boolMuteNotesSmalerThan){
+
+                if(note<local_note){
+
+
+
+                }else{
+
+                    fluid_synth_noteoff(synth, channel, note + transp);
+                }
+
+            }else{
+
+                fluid_synth_noteoff(synth, channel, note + transp);
+            }
+
+
             fluid_synth_noteoff(synth, channel, note + transp);
+
+
+
+
         }else{
 
             //do nothing
