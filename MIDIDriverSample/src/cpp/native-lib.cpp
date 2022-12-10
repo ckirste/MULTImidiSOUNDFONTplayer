@@ -83,6 +83,11 @@ public:
 
     }
 
+    int getLocalSplitNote(){
+
+        return local_note;
+
+    }
     void setBoolSplitNotes(jboolean spliteNotes){
 
         this->boolSplitNotes = spliteNotes;
@@ -431,6 +436,16 @@ public:
 
                 local_note = note;
                 boolSplitNotes = false;
+
+                if(boolMuteNotesGreaterThan){
+
+                    //btnMuteNoteGreaterThan.setText("M>"+local_note);
+
+                }else if(boolMuteNotesSmalerThan){
+
+
+                    //btnMuteNoteSmalerThan.setText("M<"+local_note);
+                }
             }
 
             int transp=transpo;
@@ -2086,4 +2101,33 @@ Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthBoolMuteNotesGreat
 
         }
     }
+}extern "C"
+JNIEXPORT jint JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_getFluidsynthLocalSplitNote(JNIEnv *env,
+                                                                             jobject thiz,
+                                                                             jint global_channel,
+                                                                             jint usb_device_id,
+                                                                             jstring instr) {
+
+    jint localSplitNote=0;
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            localSplitNote = it.operator*()->getLocalSplitNote();
+            break;
+
+
+
+        }
+    }
+    return localSplitNote;
 }

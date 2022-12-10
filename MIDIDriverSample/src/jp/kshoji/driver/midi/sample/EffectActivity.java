@@ -707,6 +707,8 @@ public class EffectActivity extends Activity
 
     }
 
+    public native int getFluidsynthLocalSplitNote(int global_channel,int usbDeviceId,String instr);
+
     public native void setFluidsynthBoolSplitNotes(int global_channel,int usbDeviceId,String instr, boolean boolSplitNotes);
 
     public native void setFluidsynthBoolMuteNotesSmalerThan(int global_channel,int usbDeviceId,String instr, boolean boolMuteNotesSmalerThan);

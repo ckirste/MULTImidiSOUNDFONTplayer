@@ -122,7 +122,7 @@ public class KeyboardActivity extends Activity
 					case MotionEvent.ACTION_DOWN:
 
 
-				
+						synth.noteOn(global_channel,note,127,0);
 
 						v.setBackgroundResource(R.drawable.rect_blue_key);
 
@@ -130,8 +130,9 @@ public class KeyboardActivity extends Activity
 
 						break;
 					case MotionEvent.ACTION_UP:
-						
-					
+
+						synth.noteOff(global_channel,note,0);
+
 						if(tagKey.equalsIgnoreCase("1") || tagKey.equalsIgnoreCase("3") || 
 						tagKey.equalsIgnoreCase("6") || tagKey.equalsIgnoreCase("8") || 
 						tagKey.equalsIgnoreCase("10")){
