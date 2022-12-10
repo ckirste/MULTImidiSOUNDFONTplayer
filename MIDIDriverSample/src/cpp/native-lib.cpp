@@ -1347,7 +1347,7 @@ Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthChorusActive(JNIEn
                                                                            jint usb_device_id,
                                                                            jstring instr,
                                                                            jboolean all) {
-    // TODO: implement setFluidsynthChorusActive()
+
     list<MyFluidsynth *>::iterator it;
     for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
 
@@ -1420,7 +1420,7 @@ Java_jp_kshoji_driver_midi_sample_EffectActivity_fluidsynthListSetVelocity(JNIEn
                                                                            jint usb_device_id,
                                                                            jstring instr,
                                                                            jint int_veloc) {
-    // TODO: implement fluidsynthListSetVelocity()
+
     list<MyFluidsynth *>::iterator it;
     for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
 
@@ -2001,5 +2001,89 @@ Java_jp_kshoji_driver_midi_sample_Synthesizer_fluidsynth_1ListSendNoteOffMessage
 
         it.operator*()->onNoteOff(channel,note,i_usb_id);
 
+    }
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthBoolSplitNotes(JNIEnv *env,
+                                                                             jobject thiz,
+                                                                             jint global_channel,
+                                                                             jint usb_device_id,
+                                                                             jstring instr,
+                                                                             jboolean bool_split_notes) {
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            it.operator*()->setBoolSplitNotes(bool_split_notes);
+            break;
+
+
+
+        }
+    }
+
+
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthBoolMuteNotesSmalerThan(JNIEnv *env,
+                                                                                      jobject thiz,
+                                                                                      jint global_channel,
+                                                                                      jint usb_device_id,
+                                                                                      jstring instr,
+                                                                                      jboolean bool_mute_notes_smaler_than) {
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            it.operator*()->setBoolMuteNotesSmalerThan(bool_mute_notes_smaler_than);
+            break;
+
+
+
+        }
+    }
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_EffectActivity_setFluidsynthBoolMuteNotesGreaterThan(JNIEnv *env,
+                                                                                       jobject thiz,
+                                                                                       jint global_channel,
+                                                                                       jint usb_device_id,
+                                                                                       jstring instr,
+                                                                                       jboolean bool_mute_notes_greater_than) {
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); it++) {
+
+        const char *getPresetNameFromJava = env->GetStringUTFChars(instr, nullptr);
+        const char *getPresetNameFromInstrList = it.operator*()->getPresetName();
+
+        int listUsbId = it.operator*()->getUsbId();
+
+        if (strcmp(getPresetNameFromJava, getPresetNameFromInstrList) == 0 &&
+            usb_device_id == listUsbId) {
+
+
+            it.operator*()->setBoolMuteNotesGreaterThan(bool_mute_notes_greater_than);
+            break;
+
+
+
+        }
     }
 }

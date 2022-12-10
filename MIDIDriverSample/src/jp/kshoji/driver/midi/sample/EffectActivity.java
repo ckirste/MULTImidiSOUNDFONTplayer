@@ -626,6 +626,9 @@ public class EffectActivity extends Activity
                     boolSplitNotes=false;
                     boolMuteNotesGreaterThan=false;
 
+                    setFluidsynthBoolSplitNotes(global_channel,usbDeviceId,instr,boolSplitNotes);
+                    setFluidsynthBoolMuteNotesGreaterThan(global_channel,usbDeviceId,instr,boolMuteNotesGreaterThan);
+
 
                     btn.setText("M>");
 
@@ -637,6 +640,11 @@ public class EffectActivity extends Activity
                     boolMuteNotesGreaterThan=true;
 
                     boolMuteNotesSmalerThan=false;
+
+
+                    setFluidsynthBoolSplitNotes(global_channel,usbDeviceId,instr,boolSplitNotes);
+                    setFluidsynthBoolMuteNotesGreaterThan(global_channel,usbDeviceId,instr,boolMuteNotesGreaterThan);
+                    setFluidsynthBoolMuteNotesSmalerThan(global_channel,usbDeviceId,instr,boolMuteNotesSmalerThan);
                     btnMuteNoteSmalerThan.setText("M<");
 
                     btn.setText("M>"+"*");
@@ -666,6 +674,8 @@ public class EffectActivity extends Activity
                     boolSplitNotes=false;
                     boolMuteNotesSmalerThan=false;
 
+                    setFluidsynthBoolSplitNotes(global_channel,usbDeviceId,instr,boolSplitNotes);
+                    setFluidsynthBoolMuteNotesSmalerThan(global_channel,usbDeviceId,instr,boolMuteNotesSmalerThan);
                     btn.setText("M<");
 
 
@@ -675,6 +685,10 @@ public class EffectActivity extends Activity
 
                     boolMuteNotesSmalerThan=true;
                     boolMuteNotesGreaterThan=false;
+
+                    setFluidsynthBoolSplitNotes(global_channel,usbDeviceId,instr,boolSplitNotes);
+                    setFluidsynthBoolMuteNotesSmalerThan(global_channel,usbDeviceId,instr,boolMuteNotesSmalerThan);
+                    setFluidsynthBoolMuteNotesGreaterThan(global_channel,usbDeviceId,instr,boolMuteNotesGreaterThan);
                     btnMuteNoteGreaterThan.setText("M>");
 
                     btn.setText("M<"+"*");
@@ -692,6 +706,12 @@ public class EffectActivity extends Activity
         });
 
     }
+
+    public native void setFluidsynthBoolSplitNotes(int global_channel,int usbDeviceId,String instr, boolean boolSplitNotes);
+
+    public native void setFluidsynthBoolMuteNotesSmalerThan(int global_channel,int usbDeviceId,String instr, boolean boolMuteNotesSmalerThan);
+
+    public native void setFluidsynthBoolMuteNotesGreaterThan(int global_channel,int usbDeviceId,String instr, boolean boolMuteNotesGreaterThan);
 
     public native void setFluidsynthChorusActive(int global_channel, int usbDeviceId, String instr, boolean all);
 
