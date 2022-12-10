@@ -49,6 +49,7 @@ private:
     bool boolFixedVelocity=true;
 
     bool boolSplitNotes=false;
+
     bool boolMuteNotesSmalerThan=false;
     bool boolMuteNotesGreaterThan=false;
 
@@ -81,6 +82,24 @@ public:
         deleteFluidSynth();
 
     }
+
+    void setBoolSplitNotes(jboolean spliteNotes){
+
+        this->boolSplitNotes = spliteNotes;
+    }
+
+    void setBoolMuteNotesSmalerThan(jboolean muteNotesSmalerThan){
+
+        this->boolMuteNotesSmalerThan=muteNotesSmalerThan;
+
+    }
+
+    void setBoolMuteNotesGreaterThan(jboolean muteNotesGreaterThan){
+
+        this->boolMuteNotesGreaterThan=muteNotesGreaterThan;
+
+    }
+
 
     void setVelocity(jint velocity){
 
@@ -406,7 +425,13 @@ public:
     void onNoteOn(jint channel, jint note,
                   jint velocity,jint usbId){
 
+
         if(usbId==this->usbId){
+            if(boolSplitNotes){
+
+                local_note = note;
+                boolSplitNotes = false;
+            }
 
             int transp=transpo;
             int velo = getLocal_velocity(velocity);
@@ -449,9 +474,14 @@ public:
 
     void onNoteOff(jint channel, jint note,jint usbId){
 
-        if(usbId==this->usbId){//maybe it has to be &&
+        if(usbId==this->usbId){
 
 
+            if(boolSplitNotes){
+
+                local_note = note;
+                boolSplitNotes = false;
+            }
             int transp=transpo;
 
             if(boolMuteNotesGreaterThan){
