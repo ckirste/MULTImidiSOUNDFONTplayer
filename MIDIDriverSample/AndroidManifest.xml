@@ -35,7 +35,12 @@
             android:screenOrientation="landscape">
 
         </activity>
+        <activity android:name=".EffectActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="landscape"
+            >
 
+        </activity>
         <activity android:name=".KeyboardActivity"
             android:screenOrientation="landscape"
             >

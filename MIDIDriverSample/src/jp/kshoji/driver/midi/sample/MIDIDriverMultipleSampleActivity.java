@@ -1845,7 +1845,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 		//findViewById(R.id.seekbarlayout).setVisibility(LinearLayout.GONE);
 		findViewById(R.id.laydropdownDevices).setVisibility(LinearLayout.GONE);
-		findViewById(R.id.layOpenSf).setVisibility(LinearLayout.GONE);
+		//findViewById(R.id.layOpenSf).setVisibility(LinearLayout.GONE);
 
 		LinearLayout layInsTemp = layContainerSelIns;
 		layInsTemp.addView(btnViewInstrument);
