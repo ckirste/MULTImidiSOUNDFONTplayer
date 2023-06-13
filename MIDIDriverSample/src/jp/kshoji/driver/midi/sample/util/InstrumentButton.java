@@ -22,6 +22,7 @@ public class InstrumentButton extends Button
 
 
 
+	private EffectContainer effectContainerEC;
 	private boolean isDrumButton = false;
 	private String instrumentName;
 	private int drumKey=35;
@@ -131,6 +132,14 @@ public class InstrumentButton extends Button
 	public int getUsbDeviceId()
 	{
 		return usbDeviceId;
+	}
+
+	public EffectContainer getEffectContainerEC() {
+		return effectContainerEC;
+	}
+
+	public void setEffectContainerEC(EffectContainer effectContainerEC) {
+		this.effectContainerEC = effectContainerEC;
 	}
 
 	public void setGlobalChannel(int channel){

@@ -9,12 +9,16 @@ import android.view.*;
 import android.widget.SeekBar.*;
 import android.widget.CompoundButton.*;
 
+import jp.kshoji.driver.midi.sample.util.EffectContainer;
+
 
 public class EffectActivity extends Activity
 {
     static {
         System.loadLibrary("native-lib");
     }
+
+    EffectContainer ec;
 
     boolean boolSplitNotes=false;
     boolean boolMuteNotesSmalerThan=false;
@@ -85,6 +89,12 @@ public class EffectActivity extends Activity
     private int transpo=0;
 
     private final String headline = "Instrument Effects";
+    private boolean boolBtnOkpressed=false;
+    private boolean boolfixedVel=false;
+    private int intVel;
+    private int intChorusNr;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -93,11 +103,18 @@ public class EffectActivity extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        setTheme(R.style.Theme_AppCompat_Dialog);
+        //setTheme(R.style.Theme_AppCompat_Dialog);
 
         setContentView(R.layout.effectactivity_lay);
 
+
         instr = getIntent().getStringExtra("Instrument");
+
+        //ec = new EffectContainer();
+        ec = (EffectContainer) getIntent().getSerializableExtra("EffectListe");
+
+
+
 
         usbDeviceId = getIntent().getIntExtra("UsbdeviceID",0);
 
@@ -112,8 +129,9 @@ public class EffectActivity extends Activity
             public void onClick(View view) {
 
 
+                boolfixedVel=false;
                 testToast("Anschlagdyn. an!");
-                fluidsynthListsetFixedVel(global_channel,usbDeviceId,instr,false);
+                fluidsynthListsetFixedVel(global_channel,usbDeviceId,instr,boolfixedVel);
 
 
             }
@@ -126,8 +144,9 @@ public class EffectActivity extends Activity
             public void onClick(View view) {
 
 
+                boolfixedVel=true;
                 testToast("Anschlagdyn. aus!");
-                fluidsynthListsetFixedVel(global_channel,usbDeviceId,instr,true);
+                fluidsynthListsetFixedVel(global_channel,usbDeviceId,instr,boolfixedVel);
 
 
             }
@@ -160,6 +179,7 @@ public class EffectActivity extends Activity
             public void onClick(View p1)
             {
 
+                boolBtnOkpressed=true;
                 finish();
                 // TODO: Implement this method
             }
@@ -324,18 +344,20 @@ public class EffectActivity extends Activity
 
                 floatProgress = p1.getProgress();
 
+                intVel= p1.getProgress();
                 switch(p1.getId()){
 
                     case R.id.seekVol:
 
 
+
                         if(boolApplyAll){
 
-                            fluidsynthListSetVelocity_For_All(global_channel,usbDeviceId,p1.getProgress());
+                            fluidsynthListSetVelocity_For_All(global_channel,usbDeviceId,intVel);
                             //textvVol.setText("all: "+p1.setProgress(););
                         }else{
 
-                            fluidsynthListSetVelocity(global_channel,usbDeviceId, instr, p1.getProgress());
+                            fluidsynthListSetVelocity(global_channel,usbDeviceId, instr, intVel);
                             //textvVol.setText(""+p2);
                         }
 
@@ -364,12 +386,13 @@ public class EffectActivity extends Activity
 
         seekVol = (SeekBar)findViewById(R.id.seekVol);
         seekVol.setOnSeekBarChangeListener(seekbarEffectlistener);
-        seekVol.setProgress(50);
+        seekVol.setProgress(ec.getIntVeloc());
         seekVol.setMax(127);
         //seekVol.setMin(0);
 
         seekChorusDepth = (SeekBar)findViewById(R.id.seekChorusDepth);
         seekChorusDepth.setMax(256);
+        //seekChorusDepth.setProgress((int) ec.getChorusDepth());
 //        seekChorusDepth.setOnSeekBarChangeListener(seekbarEffectlistener);
         seekChorusDepth.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
@@ -448,9 +471,9 @@ public class EffectActivity extends Activity
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
-
+                intChorusNr=seekBar.getProgress();
                 Fluidsynth_Synth_List_ChorusNr(global_channel,usbDeviceId,
-                        instr,seekBar.getProgress(),boolApplyAll);
+                        instr,intChorusNr,boolApplyAll);
 
             }
         });
@@ -780,7 +803,27 @@ public class EffectActivity extends Activity
 
             data.putExtra("deleteIns","");
 
+            ec = new EffectContainer();
+            ec.setBoolfixedVel(boolfixedVel);
+            ec.setIntVeloc(intVel);
+            ec.setIntTranspo(transpo);
+            ec.setBoolMuteNotesGreaterThan(boolMuteNotesGreaterThan);
+            ec.setBoolMuteNotesSmalerThan(boolMuteNotesSmalerThan);
+            ec.setBoolSplitNotes(boolSplitNotes);
+            ec.setChorusDepth(floatProgressChD);
+            ec.setChorusLevel(floatProgressChL);
+            ec.setChorusNr(intChorusNr);
+            ec.setChorusSpeed(floatProgressChS);
+            ec.setReverbDamp(floatProgressRbD);
+            ec.setReverbLevel(floatProgressRbL);
+            ec.setReverbRoomsize(floatProgressRbRS);
+            ec.setReverbWidth(floatProgressRbW);
+
+            
+
+
         }
+
 
 
 

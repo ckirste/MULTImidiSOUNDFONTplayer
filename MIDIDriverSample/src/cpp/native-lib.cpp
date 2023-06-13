@@ -312,7 +312,8 @@ public:
         fluid_settings_setstr(settings, "audio.driver", "oboe");
         fluid_settings_setstr(settings, "audio.oboe.performance-mode", "LowLatency");
         fluid_settings_setstr(settings, "audio.oboe.sharing-mode", "Exclusive");
-        fluid_settings_setnum(settings,"synth.sample-rate",48000);
+        //fluid_settings_setnum(settings,"synth.sample-rate",48000);
+        fluid_settings_setnum(settings,"synth.sample-rate",44100);
         fluid_settings_setint(settings,"audio.periods",2);
         fluid_settings_setint(settings,"audio.period-size",256);
         fluid_settings_setint(settings,"synth.cpu-cores",coreCount);

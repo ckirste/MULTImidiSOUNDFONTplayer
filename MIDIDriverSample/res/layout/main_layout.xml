@@ -239,134 +239,165 @@
 		android:orientation="horizontal">
 
 
-		<LinearLayout
-			android:layout_width="120dp"
-			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:id="@+id/llVelocity">
-
-			<TableLayout
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:stretchColumns="*">
-
-				<TableRow>
-
-					<TextView
-						android:id="@+id/txtviewTranspose"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_gravity="center"
-						android:layout_weight="1"
-						android:gravity="center"
-						android:text="Transp" />
-
-				</TableRow>
-
-				<TableRow>
-
-					<Button
-						android:id="@+id/btnTransMin12"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_weight="1"
-						android:text="-12" />
-
-					<Button
-						android:id="@+id/btnTransPlus12"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="1"
-						android:layout_weight="1"
-						android:text="+12" />
-
-				</TableRow>
-
-				<TableRow>
-
-					<Button
-						android:id="@+id/btnTransMin1"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_weight="1"
-						android:text="-1" />
-
-					<Button
-						android:id="@+id/btnTransPlus1"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="1"
-						android:layout_weight="1"
-						android:text="+1" />
-
-				</TableRow>
-
-				<TableRow>
-
-					<Button
-						android:id="@+id/btnTrans0"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_weight="1"
-						android:text="0" />
-
-				</TableRow>
-
-				<TableRow>
-
-					<Button
-						android:id="@+id/btnFixed"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_weight="1"
-						android:text="F" />
-
-					<Button
-						android:id="@+id/btnSoft"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="1"
-						android:layout_weight="1"
-						android:text="S" />
-
-				</TableRow>
-
-				<TableRow>
-
-					<SeekBar
-						android:id="@+id/seekVelocity"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_weight="1"
-						android:progress="70" />
-
-				</TableRow>
-
-				<TableRow>
-
-					<TextView
-						android:id="@+id/txtvVelocity"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_column="0"
-						android:layout_weight="1"
-						android:gravity="center"
-						android:text="global velocity"
-						android:textAppearance="?android:attr/textAppearanceSmall" />
-
-				</TableRow>
+		<ScrollView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent">
 
 
-			</TableLayout>
+			<LinearLayout
+				android:id="@+id/llVelocity"
+				android:layout_width="120dp"
+				android:layout_height="match_parent"
+				android:orientation="vertical">
 
-		</LinearLayout>
+				<TableLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:stretchColumns="*">
 
+					<TableRow>
+
+						<TextView
+							android:id="@+id/txtviewTranspose"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="Transp" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnTransMin12"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:text="-12" />
+
+						<Button
+							android:id="@+id/btnTransPlus12"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="1"
+							android:layout_weight="1"
+							android:text="+12" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnTransMin1"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:text="-1" />
+
+						<Button
+							android:id="@+id/btnTransPlus1"
+							android:layout_width="47dp"
+							android:layout_height="match_parent"
+							android:layout_column="1"
+							android:layout_weight="1"
+							android:text="+1" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnTrans0"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:text="0" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<Button
+							android:id="@+id/btnFixed"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:text="F" />
+
+						<Button
+							android:id="@+id/btnSoft"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="1"
+							android:layout_weight="1"
+							android:text="S" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<SeekBar
+							android:id="@+id/seekVelocity"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:progress="70" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<TextView
+							android:id="@+id/txtvVelocity"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="global velocity"
+							android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<SeekBar
+							android:id="@+id/seekVolume"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:progress="1" />
+
+					</TableRow>
+
+					<TableRow>
+
+						<TextView
+							android:id="@+id/txtvVolume"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="global volume"
+							android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					</TableRow>
+
+
+				</TableLayout>
+
+			</LinearLayout>
+		</ScrollView>
 
 		<LinearLayout
 			android:id="@+id/layoutForUsbDevices"

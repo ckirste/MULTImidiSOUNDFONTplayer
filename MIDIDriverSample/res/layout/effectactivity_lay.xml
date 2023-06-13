@@ -1,462 +1,471 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="top">
+    android:layout_gravity="top"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:stretchColumns="*"
-            android:layout_height="wrap_content">
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Instrument Effects"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_gravity="center"
-                    android:layout_column="0"
-                    android:gravity="center"
-                    android:layout_weight="1.0"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/textvInstrEff"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Volume:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/textvVol"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekVol"/>
-
-            </TableRow>
-
-            <TableRow>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:layout_weight="1.0"
-                    android:layout_marginRight="10dp">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chorus"
-                        android:id="@+id/chckbxChorus"/>
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Depth:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/textvChorusDepth"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekChorusDepth"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Level:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/textvChorusLev"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekChorusLev"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nr:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/textvChorusNr"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekChorusNr"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Speed:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/textvChorusSpeed"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekChorusSpeed"/>
-
-            </TableRow>
-
-            <TableRow>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:layout_weight="1.0"
-                    android:layout_marginRight="10dp">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reverb"
-                        android:id="@+id/chckbxReverb"/>
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Damp:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/textvReverbDamp"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekReverbDamp"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Level:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/textvReverbLevel"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekReverbLevel"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Room-Size:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/textvReverbRoomsz"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekReverbRoomsz"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Width:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="0"
-                    android:layout_weight="1.0"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_column="1"
-                    android:layout_weight="2"
-                    android:gravity="center_horizontal"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/textvReverbWidth"/>
-
-                <SeekBar
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/seekReverbWidth"/>
-
-            </TableRow>
-
-        </TableLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <CheckBox
-                android:layout_width="wrap_content"
+            <TableLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Apply for all"
-                android:layout_gravity="center_vertical"
-                android:id="@+id/chckbxApplyAll"
-                android:layout_marginRight="5dp"/>
+                android:layout_gravity="center_horizontal"
+                android:stretchColumns="*">
 
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:id="@+id/btn0"
-                android:layout_marginRight="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="-12"
-                android:id="@+id/btnMin12"
-                android:layout_marginRight="5dp"/>
+                <TableRow>
 
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="+12"
-                android:id="@+id/btnPlus12"
-                android:layout_marginRight="5dp"/>
+                    <TextView
+                        android:id="@+id/textvInstrEff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:text="Instrument Effects"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="F"
-                android:id="@+id/btnFixed"
-                android:layout_marginRight="5dp"/>
+                </TableRow>
 
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="S"
-                android:id="@+id/btnSoft"
-                android:layout_marginRight="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="M&gt;"
-                android:id="@+id/btnMuteNoteGreater"/>
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
 
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="M&lt;"
-                android:id="@+id/btnMuteNoteSmaler"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Volume:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <Button
-                android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_height="wrap_content"
-                android:text="OK"
-                android:id="@+id/btnEffectOk"/>
+                    <TextView
+                        android:id="@+id/textvVol"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <Button
+                    <SeekBar
+                        android:id="@+id/seekVol"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/chckbxChorus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chorus" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Depth:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvChorusDepth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekChorusDepth"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Level:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvChorusLev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekChorusLev"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Nr:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvChorusNr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekChorusNr"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Speed:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvChorusSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekChorusSpeed"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/chckbxReverb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reverb" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Damp:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvReverbDamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekReverbDamp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Level:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvReverbLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekReverbLevel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Room-Size:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvReverbRoomsz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekReverbRoomsz"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="1.0"
+                        android:text="Width:"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/textvReverbWidth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <SeekBar
+                        android:id="@+id/seekReverbWidth"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.0" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_height="wrap_content"
-                android:text="DEL"
-                android:id="@+id/btnDeleteInstr"
-                android:layout_marginLeft="15dp"/>
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chckbxApplyAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
+                    android:text="Apply for all" />
+
+                <Button
+                    android:id="@+id/btn0"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/btnMin12"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="-12" />
+
+                <Button
+                    android:id="@+id/btnPlus12"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="+12" />
+
+                <Button
+                    android:id="@+id/btnFixed"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="F" />
+
+                <Button
+                    android:id="@+id/btnSoft"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="S" />
+
+                <Button
+                    android:id="@+id/btnMuteNoteGreater"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M&gt;" />
+
+                <Button
+                    android:id="@+id/btnMuteNoteSmaler"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M&lt;" />
+
+                <Button
+                    android:id="@+id/btnEffectOk"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK" />
+
+                <Button
+                    android:id="@+id/btnDeleteInstr"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="DEL" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

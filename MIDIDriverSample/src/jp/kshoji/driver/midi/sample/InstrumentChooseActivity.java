@@ -149,6 +149,7 @@ public class InstrumentChooseActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chooseinstrument_layout);
 		//testToast(""+listeInstrumenteNames.size());
@@ -488,7 +489,13 @@ public class InstrumentChooseActivity extends Activity
 
 	private void listFiles(File fil)
 	{
-		fi=fil;
+
+		if(Build.VERSION.SDK_INT>=30){
+
+			fi = myDirSoundfonts;
+		}else {
+			fi = fil;
+		}
 
 		if(fi!=null && fi.getAbsolutePath().compareToIgnoreCase("/storage")==0){
 

@@ -5,73 +5,7 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
 
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Transpo"
-			android:layout_gravity="center_vertical"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="0"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="-1"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="+1"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="-12"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="+12"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="F"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="S"
-			android:layout_weight="1.0"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="R"
-			android:layout_weight="1.0"
-			android:id="@+id/btnRotatePiano"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Back"
-			android:layout_weight="1.0"/>
-
-	</LinearLayout>
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -213,68 +147,73 @@
 	</LinearLayout>
 
 	<LinearLayout
-		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp">
+		android:layout_marginTop="20dp"
+		android:orientation="horizontal">
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Volume"
-			android:layout_gravity="center_vertical"/>
+			android:layout_gravity="center_vertical"
+			android:text="Transpo" />
 
-		<SeekBar
-			android:layout_width="100dp"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_vertical"/>
-
-		<LinearLayout
-			android:orientation="horizontal"
+		<Button
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="0" />
 
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="5"
-				android:layout_weight="1.0"
-				android:layout_marginRight="25dp"
-				android:background="#00FF15"/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="-1" />
 
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="6"
-				android:layout_weight="1.0"
-				android:layout_marginRight="25dp"
-				android:background="#FFA49E"/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="+1" />
 
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="7"
-				android:layout_weight="1.0"
-				android:layout_marginRight="25dp"
-				android:background="#49C6FF"/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="-12" />
 
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="8"
-				android:layout_weight="1.0"
-				android:layout_marginRight="10dp"
-				android:background="#4D32FF"/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="+12" />
 
-			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Drums"/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="F" />
 
-		</LinearLayout>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="S" />
+
+		<Button
+			android:id="@+id/btnRotatePiano"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="R" />
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="Back" />
 
 	</LinearLayout>
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

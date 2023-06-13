@@ -3,11 +3,13 @@ package jp.kshoji.driver.midi.sample;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff.Mode;
 import android.hardware.usb.UsbDevice;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -68,6 +70,10 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 	private boolean instrumentsSaved =false;
 	private String strDrumName;
+	private AudioManager am;
+	private int curVol;
+	private TextView txtvVolume;
+	private SeekBar seekVolume;
 
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -345,6 +351,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 		intent.putExtra("Instrument", tempBtnInstr.getText().toString());
 		intent.putExtra("UsbdeviceID", tempBtnInstr.getUsbDeviceId());
 		intent.putExtra("Channel",global_channel);
+
 
 		startActivityForResult(intent,EFFECT_INSTRUMENT_ACTIVITY_CODE);
 	}
@@ -864,6 +871,49 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
         });
 
+		am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+		final int maxVol = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+		curVol = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+		txtvVolume = (TextView)findViewById(R.id.txtvVolume);
+
+
+		seekVolume = (SeekBar)findViewById(R.id.seekVolume);
+		seekVolume.setMax(maxVol);
+		seekVolume.setProgress(curVol);
+
+		seekVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+			@Override
+			public void onProgressChanged(SeekBar p1, int p2, boolean p3)
+			{
+
+				am.setStreamVolume(AudioManager.STREAM_MUSIC,p2,0);
+				txtvVolume.setText(""+p2);
+
+				// TODO: Implement this method
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar p1)
+			{
+				// TODO: Implement this method
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar p1)
+			{
+				// TODO: Implement this method
+			}
+
+
+
+
+
+		});
+
 		btnDrums = (Button) findViewById(R.id.btnDrums);
 		btnDrums.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -1274,7 +1324,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 		layContainerSelIns = (LinearLayout) findViewById(usbDeviceId);
 
-		LinearLayout llRegbtn = (LinearLayout) findViewById(R.id.seekbarlayout);
+		LinearLayout llRegbtn = (LinearLayout) findViewById(R.id.layOpenSf);
 		for(int i=1;i<AMOUNT_OF_REGISTRATION_BUTTON+1;i++){
 
 
@@ -1753,9 +1803,14 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	private void addLayoutForInstruments(String strPresetName, final String soundfontpath, ArrayList<SF2Preset> listeSF2Presets)//int indexI, String deviceName, int deviceId, LinearLayout layInsTemp)
 	{
 
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		llp.setMargins(0,30,0,0);
+
 		InstrumentButton btnViewInstrument = new InstrumentButton(this);
 
 		btnViewInstrument.setRotation(0.0f);
+		btnViewInstrument.setLayoutParams(llp);
+
 		btnViewInstrument.setListeSF2Presets(listeSF2Presets);
 		btnViewInstrument.setUsbDeviceId(usbDeviceId);//layInsTemp.getId());
 		btnViewInstrument.setSoundfontpath(soundfontpath);
@@ -1790,7 +1845,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 					//TODO: falls es nicht funktioniert wieder rückgängig machen
                     fluidsynth_ListDeleteInstrument(global_channel, tempBtnInstr.getUsbDeviceId(), tempBtnInstr.getText().toString());
 
-                    testToast(""+tempBtnInstr.getText() + " stumm!");
+                    //testToast(""+tempBtnInstr.getText() + " stumm!");
 
 
 

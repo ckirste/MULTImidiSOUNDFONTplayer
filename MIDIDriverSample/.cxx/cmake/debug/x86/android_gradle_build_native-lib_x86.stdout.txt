@@ -1,2 +1,13 @@
 ninja: Entering directory `C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\.cxx\cmake\debug\x86'
-ninja: no work to do.
+[1/2] Building CXX object CMakeFiles/native-lib.dir/native-lib.cpp.o
+C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/src/cpp/native-lib.cpp:759:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/src/cpp/native-lib.cpp:1080:1: warning: control may reach end of non-void function [-Wreturn-type]
+}extern "C"
+^
+C:/Users/User/StudioProjects/USB-MIDI-Driver/MIDIDriverSample/src/cpp/native-lib.cpp:1431:1: warning: control may reach end of non-void function [-Wreturn-type]
+}extern "C"
+^
+3 warnings generated.
+[2/2] Linking CXX shared library C:\Users\User\StudioProjects\USB-MIDI-Driver\MIDIDriverSample\build\intermediates\cmake\debug\obj\x86\libnative-lib.so
