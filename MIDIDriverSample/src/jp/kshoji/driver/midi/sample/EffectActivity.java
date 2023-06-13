@@ -111,7 +111,7 @@ public class EffectActivity extends Activity
         instr = getIntent().getStringExtra("Instrument");
 
         //ec = new EffectContainer();
-        ec = (EffectContainer) getIntent().getSerializableExtra("EffectListe");
+        ec = (EffectContainer) getIntent().getSerializableExtra("EffectList");
 
 
 
@@ -392,7 +392,7 @@ public class EffectActivity extends Activity
 
         seekChorusDepth = (SeekBar)findViewById(R.id.seekChorusDepth);
         seekChorusDepth.setMax(256);
-        //seekChorusDepth.setProgress((int) ec.getChorusDepth());
+        seekChorusDepth.setProgress((int) ec.getChorusDepth());
 //        seekChorusDepth.setOnSeekBarChangeListener(seekbarEffectlistener);
         seekChorusDepth.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
@@ -819,7 +819,7 @@ public class EffectActivity extends Activity
             ec.setReverbRoomsize(floatProgressRbRS);
             ec.setReverbWidth(floatProgressRbW);
 
-            
+            data.putExtra("EffectList",ec);
 
 
         }

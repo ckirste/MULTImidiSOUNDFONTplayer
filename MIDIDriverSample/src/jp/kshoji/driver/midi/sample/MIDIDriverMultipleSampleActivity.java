@@ -74,6 +74,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 	private int curVol;
 	private TextView txtvVolume;
 	private SeekBar seekVolume;
+	private EffectContainer effectContainerEC;
 
 	@Override
 	public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -352,6 +353,19 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 		intent.putExtra("UsbdeviceID", tempBtnInstr.getUsbDeviceId());
 		intent.putExtra("Channel",global_channel);
 
+
+		//effectContainerEC.setIntVeloc(70);
+		effectContainerEC = tempBtnInstr.getEffectContainerEC();
+
+		if(effectContainerEC != null) {
+			intent.putExtra("EffectList", tempBtnInstr.getEffectContainerEC());
+		}else{
+
+			effectContainerEC = new EffectContainer();
+
+			intent.putExtra("EffectList", effectContainerEC);
+
+		}
 
 		startActivityForResult(intent,EFFECT_INSTRUMENT_ACTIVITY_CODE);
 	}
@@ -633,6 +647,10 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 						tempLay.removeView(tempBtnInstr);
 					}
 				}else if(deleteInstr.compareToIgnoreCase("")==0){
+
+					effectContainerEC = (EffectContainer)data.getSerializableExtra("EffectList");
+					tempBtnInstr.setEffectContainerEC(effectContainerEC);
+
 
 
 					//do nothing

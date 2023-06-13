@@ -169,6 +169,7 @@
       "project": {
         "compilerSettingsCacheFolder": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\.cxx",
         "cxxFolder": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\.cxx",
+        "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
@@ -192,10 +193,7 @@
     "objFolder": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\build\\intermediates\\cmake\\debug\\obj",
     "variantName": "debug",
     "validAbiList": [
-      "ARMEABI_V7A",
-      "ARM64_V8A",
-      "X86",
-      "X86_64"
+      "ARM64_V8A"
     ],
     "prefabDirectory": "C:\\Users\\User\\StudioProjects\\USB-MIDI-Driver\\MIDIDriverSample\\.cxx\\cmake\\debug\\prefab",
     "prefabPackageDirectoryList": []
