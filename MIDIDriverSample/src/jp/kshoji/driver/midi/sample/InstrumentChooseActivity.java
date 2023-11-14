@@ -465,8 +465,8 @@ public class InstrumentChooseActivity extends Activity
 
 
 
-		myDirSoundfonts = new File(Environment.getExternalStorageDirectory(), SOUNDFONT_DIRECTORY);//create directory and subfolder
-		myDirSettings = new File(Environment.getExternalStorageDirectory() + File.separator + "MULTImidiSOUNDFONTplayer", "Settings");
+		myDirSoundfonts = new File(Environment.getExternalStorageDirectory(), APP_DATA_DIRECTORY + File.separator + SOUNDFONT_DIRECTORY);//create directory and subfolder
+		myDirSettings = new File(Environment.getExternalStorageDirectory() + File.separator + APP_DATA_DIRECTORY, "Settings");
 
 
 
@@ -490,12 +490,14 @@ public class InstrumentChooseActivity extends Activity
 	private void listFiles(File fil)
 	{
 
-		if(Build.VERSION.SDK_INT>=30){
+		/*if(Build.VERSION.SDK_INT>=30){
 
 			fi = myDirSoundfonts;
 		}else {
 			fi = fil;
-		}
+		}*/
+
+		fi = fil;
 
 		if(fi!=null && fi.getAbsolutePath().compareToIgnoreCase("/storage")==0){
 
@@ -529,7 +531,12 @@ public class InstrumentChooseActivity extends Activity
 
 		}else{
 
-			rootDirectory = innerDir.getParentFile();
+			if(Build.VERSION.SDK_INT>=30){
+
+				rootDirectory =myDirSoundfonts;
+			}else {
+				rootDirectory = innerDir.getParentFile();
+			}
 			File[] files = rootDirectory.listFiles();
 
 			Log.d("Files", "Size: " + files.length);

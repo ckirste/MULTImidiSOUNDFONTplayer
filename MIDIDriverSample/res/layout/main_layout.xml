@@ -392,6 +392,33 @@
 							android:textAppearance="?android:attr/textAppearanceSmall" />
 
 					</TableRow>
+					//samplerate settings
+					<TableRow>
+
+						<SeekBar
+							android:id="@+id/seekSampleRate"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							/>
+
+					</TableRow>
+
+					<TableRow>
+
+						<TextView
+							android:id="@+id/txtvSampleRate"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_column="0"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="Samplerate (Hz)"
+							android:textAppearance="?android:attr/textAppearanceSmall" />
+
+					</TableRow>
+
 
 
 				</TableLayout>

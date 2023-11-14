@@ -192,13 +192,15 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
-			android:text="F" />
+			android:text="F"
+			android:visibility="gone" />
 
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
-			android:text="S" />
+			android:text="S"
+			android:visibility="gone" />
 
 		<Button
 			android:id="@+id/btnRotatePiano"

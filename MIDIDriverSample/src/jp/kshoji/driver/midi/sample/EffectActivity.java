@@ -86,14 +86,17 @@ public class EffectActivity extends Activity
     Button btnPitchMin12;
     private Button btnPitch0;
 
+    private Button btnShare;
+
     private int transpo=0;
 
     private final String headline = "Instrument Effects";
-    private boolean boolBtnOkpressed=false;
     private boolean boolfixedVel=false;
     private int intVel;
     private int intChorusNr;
 
+    private String soundfontPath;
+    private boolean boolShareIns=false;
 
 
     @Override
@@ -107,6 +110,7 @@ public class EffectActivity extends Activity
 
         setContentView(R.layout.effectactivity_lay);
 
+        //soundfontPath = getIntent().getStringExtra("soundfontPath");
 
         instr = getIntent().getStringExtra("Instrument");
 
@@ -122,6 +126,17 @@ public class EffectActivity extends Activity
 
         textvInstr = (TextView)findViewById(R.id.textvInstrEff);
         textvInstr.setText(textvInstr.getText()+" "+  instr);
+
+        btnShare = (Button)findViewById(R.id.btnEffectShare);
+        btnShare.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                boolShareIns = true;
+                finish();
+
+            }
+        });
 
         btnSoftVeloc = (Button)findViewById(R.id.btnFixed);
         btnSoftVeloc.setOnClickListener(new OnClickListener() {
@@ -179,7 +194,6 @@ public class EffectActivity extends Activity
             public void onClick(View p1)
             {
 
-                boolBtnOkpressed=true;
                 finish();
                 // TODO: Implement this method
             }
@@ -426,6 +440,7 @@ public class EffectActivity extends Activity
         });
 
         seekChorusLev = (SeekBar)findViewById(R.id.seekChorusLev);
+        seekChorusLev.setProgress((int)ec.getChorusLevel());
         seekChorusLev.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -456,6 +471,7 @@ public class EffectActivity extends Activity
         seekChorusLev.setMax(10);
 
         seekChorusNr = (SeekBar)findViewById(R.id.seekChorusNr);
+        seekChorusNr.setProgress(ec.getChorusNr());
         seekChorusNr.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -480,6 +496,7 @@ public class EffectActivity extends Activity
         seekChorusNr.setMax(99);
 
         seekChorusSpeed = (SeekBar)findViewById(R.id.seekChorusSpeed);
+        seekChorusSpeed.setProgress((int)ec.getChorusSpeed());
         seekChorusSpeed.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -511,6 +528,7 @@ public class EffectActivity extends Activity
         seekChorusSpeed.setMax(5);
 
         seekReverbDamp = (SeekBar)findViewById(R.id.seekReverbDamp);
+        seekReverbDamp.setProgress((int)ec.getReverbDamp());
         seekReverbDamp.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -541,6 +559,7 @@ public class EffectActivity extends Activity
         seekReverbDamp.setMax(100);
 
         seekReverbLevel = (SeekBar)findViewById(R.id.seekReverbLevel);
+        seekReverbLevel.setProgress((int)ec.getReverbLevel());
         seekReverbLevel.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -572,6 +591,7 @@ public class EffectActivity extends Activity
         seekReverbLevel.setMax(100);
 
         seekReverbRoomsz = (SeekBar)findViewById(R.id.seekReverbRoomsz);
+        seekReverbRoomsz.setProgress((int)ec.getReverbRoomsize());
         seekReverbRoomsz.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -602,6 +622,7 @@ public class EffectActivity extends Activity
         seekReverbRoomsz.setMax(100);
 
         seekReverbWidth = (SeekBar)findViewById(R.id.seekReverbWidth);
+        seekReverbWidth.setProgress((int)ec.getReverbWidth());
         seekReverbWidth.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -788,6 +809,20 @@ public class EffectActivity extends Activity
 
         Intent data = new Intent();
 
+        if(chckbxApplyAll.isChecked() && boolShareIns){
+
+            data.putExtra("shareInstr","all");
+
+        }else if(!chckbxApplyAll.isChecked() && boolShareIns){
+
+            data.putExtra("shareInstr","this");
+
+        }else if(!boolShareIns){
+
+
+            data.putExtra("shareInstr","");
+
+        }
 
         if(chckbxApplyAll.isChecked() && boolDelIns){
 

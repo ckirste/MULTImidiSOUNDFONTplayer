@@ -15,4 +15,6 @@
     <usb-device vendor-id="0944" />
     <!-- CME -->
     <usb-device vendor-id="9615" />
+    <!-- M-Audio -->
+    <usb-device vendor-id="0763" />
 </resources>

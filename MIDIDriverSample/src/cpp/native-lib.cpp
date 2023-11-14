@@ -28,6 +28,7 @@ float reverbLevel=0.5;
 float reverbRoomSize=0.9;
 float reverbWidth=0.7;
 
+int sampleRate=44100;
 
 class MyFluidsynth {
 
@@ -162,6 +163,13 @@ public:
 
         fluid_settings_setnum(settings,settStr,fl_synth_setting_value);
 
+
+    }
+
+    void setSynthSettingsSampleRate(JNIEnv *env,int synth_setting_value){
+
+        sampleRate = synth_setting_value;
+        fluid_settings_setnum(settings,"synth.sample-rate",sampleRate);
 
     }
 
@@ -313,7 +321,7 @@ public:
         fluid_settings_setstr(settings, "audio.oboe.performance-mode", "LowLatency");
         fluid_settings_setstr(settings, "audio.oboe.sharing-mode", "Exclusive");
         //fluid_settings_setnum(settings,"synth.sample-rate",48000);
-        fluid_settings_setnum(settings,"synth.sample-rate",44100);
+        fluid_settings_setnum(settings,"synth.sample-rate",sampleRate);
         fluid_settings_setint(settings,"audio.periods",2);
         fluid_settings_setint(settings,"audio.period-size",256);
         fluid_settings_setint(settings,"synth.cpu-cores",coreCount);
@@ -2131,4 +2139,17 @@ Java_jp_kshoji_driver_midi_sample_EffectActivity_getFluidsynthLocalSplitNote(JNI
         }
     }
     return localSplitNote;
+}extern "C"
+JNIEXPORT void JNICALL
+Java_jp_kshoji_driver_midi_sample_MIDIDriverMultipleSampleActivity_fluidsynthListsetSampleRate(
+        JNIEnv *env, jobject thiz, jint sample_rate) {
+
+    list<MyFluidsynth *>::iterator it;
+    for (it = myfluidsynthList.begin(); it != myfluidsynthList.end(); ++it) {
+
+
+        it.operator*()->setSynthSettingsSampleRate(env, sample_rate);
+
+    }
+
 }
