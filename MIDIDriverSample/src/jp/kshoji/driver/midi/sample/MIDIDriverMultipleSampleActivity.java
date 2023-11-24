@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -47,6 +48,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -70,8 +72,10 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
         System.loadLibrary("native-lib");
     }
 
+    ArrayList<InstrumentContainer> instrumentContainerArrayList;
+    boolean shareAll=false;
     String strSharedFileName;
-    private String externeDatei = "#_";
+    private String externeDateiPreFix = "#_";
     private ArrayList<String> arrlistSavedInstr = new ArrayList<>();
     private ArrayList<File> arrlistSavedInstrFiles = new ArrayList<>();
     private boolean instrumentsSaved = false;
@@ -351,15 +355,35 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
     private void startIntentEffects() {
 
+        instrumentContainerArrayList = new ArrayList<>();
+        int llCount = layContainerSelIns.getChildCount();
 
-        //testToast(""+tempBtnInstr.getText().toString());
+        for (int j = 0; j < llCount; j++) {
+
+
+            InstrumentButton instru = (InstrumentButton) layContainerSelIns.getChildAt(j);
+
+            String strInstruName = instru.getText().toString();
+            InstrumentContainer insc = new InstrumentContainer();
+            insc.setInstrumentName(strInstruName);
+            insc.setSoundfontPath(instru.getSoundfontpath());
+            insc.setOn(instru.isBoolVolumeOn());
+
+            instrumentContainerArrayList.add(insc);
+
+
+        }
+
+            //testToast(""+tempBtnInstr.getText().toString());
         Intent intent = new Intent(MIDIDriverMultipleSampleActivity.this, EffectActivity.class);
 
-
-
+        intent.putExtra("instrumentList",instrumentContainerArrayList);
         intent.putExtra("Instrument", tempBtnInstr.getText().toString());
         intent.putExtra("UsbdeviceID", tempBtnInstr.getUsbDeviceId());
         intent.putExtra("Channel", global_channel);
+
+        intent.putExtra("pathOfSettingsDir",myDirSettings.getAbsolutePath());
+
 
 
         //effectContainerEC.setIntVeloc(70);
@@ -569,7 +593,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
         } else if (requestCode == EFFECT_INSTRUMENT_ACTIVITY_CODE) {
 
-            boolean shareAll=false;
+
 
             //testToast("effect_instrument");
             if (resultCode == this.RESULT_OK) {
@@ -578,24 +602,14 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
                 String deleteInstr = data.getStringExtra("deleteIns");
                 String shareInstr = data.getStringExtra("shareInstr");
 
+
                 if(shareInstr.compareToIgnoreCase("all")==0){
 
                     shareAll=true;
 
-                    popUpEditText();
-
-                    File file = new File(myDirSettings, strSharedFileName);
-
-                    try {
-                        saveSharedInstruments(file,shareAll);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                    sharingIntent.setType("*/*");
-                    sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
-                    startActivity(Intent.createChooser(sharingIntent, "share file with"));
+                    //File f = new File(data.getStringExtra("shareFile"));
+                    startIntentSharingFile(data.getStringExtra("shareFile"));
+                    //popUpEditText();
 
 
 
@@ -604,22 +618,12 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
                 }else if(shareInstr.compareToIgnoreCase("this")==0){
 
                     shareAll=false;
+                    //File f = new File(data.getStringExtra("shareFile"));
+
+                    startIntentSharingFile(data.getStringExtra("shareFile"));
+                    //popUpEditText();
 
 
-                    popUpEditText();
-
-                    File file = new File(myDirSettings, strSharedFileName);
-
-                    try {
-                        saveSharedInstruments(file,shareAll);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                    sharingIntent.setType("*/*");
-                    sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
-                    startActivity(Intent.createChooser(sharingIntent, "share file with"));
 
 
 
@@ -712,7 +716,18 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                strSharedFileName = externeDatei + input.getText().toString();
+                strSharedFileName = externeDateiPreFix + input.getText().toString();
+                //File file = new File(myDirSettings, strSharedFileName);
+
+                try {
+                    //saveSharedInstruments(file,shareAll);
+                    saveSharedInstruments();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
                 dialog.dismiss();
 
             }
@@ -729,8 +744,21 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
     }
 
+    private void startIntentSharingFile(String fileName) {
+        File f = new File(myDirSettings, fileName+".txt");
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        Uri uri = FileProvider.getUriForFile(getApplicationContext(),"jp.kshoji.driver.midi.sample.MIDIDriverMultipleSampleActivity",
+                f);
+        sharingIntent.setType("text/plain");
+        //sharingIntent.setType(URLConnection.guessContentTypeFromName(f.getName()));
+        //String strFileName = /*fileName*/"#_z" + ".txt";
+        //sharingIntent.setData(Uri.parse("file://"+f.getAbsolutePath()));
 
 
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);//myDirSettings+"/"+strFileName));//file.getAbsolutePath()));//"file://" + file.getAbsolutePath()));
+        sharingIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(sharingIntent, "share file with..."+fileName));
+    }
 
 
     private void getSavedInstruments() {
@@ -803,6 +831,67 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
     }
 
+    private void saveSharedInstruments() throws IOException {
+
+        //TODO: trqnsfer this to effectactivity without send file intent
+        File tempFile = new File(myDirSettings,strSharedFileName+".txt");
+
+
+//        File tempFile = File.createTempFile(strSharedFileName,".txt",getApplicationContext().getCacheDir());
+        //file.createNewFile();
+
+        FileOutputStream stream = new FileOutputStream(tempFile);
+
+        LinearLayout view = (LinearLayout) findViewById(usbDeviceId);
+        String instr = "";
+
+        if (shareAll) {
+            int countInstr = view.getChildCount();
+            for (int i = 0; i < countInstr; i++) {
+
+                InstrumentButton ib = (InstrumentButton) view.getChildAt(i);
+
+                if(ib.isBoolVolumeOn()) {
+                    instr = instr + ib.getSoundfontpath() + "\n";
+                    instr = instr + ib.getText().toString() + "\n";
+
+                    //TODO: save effects...
+                    //instr += instr + "\n";
+                }
+
+            }
+        }else {
+
+
+            instr = instr + tempBtnInstr.getSoundfontpath() + "\n";
+            instr = instr + tempBtnInstr.getText().toString() + "\n";
+            //btnKeyboardAktivity.setText(instr);
+        }
+
+
+        stream.write(instr.getBytes());
+
+        stream.flush();
+        stream.close();
+
+
+
+
+        //if(file.exists()) {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://" + tempFile.getAbsolutePath()));
+            startActivity(Intent.createChooser(sharingIntent, "share file with...." + tempFile.getAbsolutePath()));
+        //}
+
+
+        //tempFile.delete();
+
+
+
+
+
+    }
     private void saveSharedInstruments(File f,boolean shareAll)throws IOException{
 
         FileOutputStream stream = new FileOutputStream(f);
@@ -837,6 +926,8 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
         stream.close();
 
+
+        //startIntentSharingFile(f);
 
 
 
@@ -1385,6 +1476,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 
     private void createDir() throws IOException {
+
 
 
         myDirSoundfonts = new File(Environment.getExternalStorageDirectory(), "MULTImidiSOUNDFONTplayer/SOUNDFONTS");//create directory and subfolder

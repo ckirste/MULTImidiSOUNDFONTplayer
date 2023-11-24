@@ -2,6 +2,7 @@ package jp.kshoji.driver.midi.sample;
 
 import android.app.*;
 import android.content.*;
+import android.net.Uri;
 import android.os.*;
 import android.widget.*;
 import android.view.View.*;
@@ -9,7 +10,14 @@ import android.view.*;
 import android.widget.SeekBar.*;
 import android.widget.CompoundButton.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import jp.kshoji.driver.midi.sample.util.EffectContainer;
+import jp.kshoji.driver.midi.sample.util.InstrumentButton;
+import jp.kshoji.driver.midi.sample.util.InstrumentContainer;
 
 
 public class EffectActivity extends Activity
@@ -18,7 +26,13 @@ public class EffectActivity extends Activity
         System.loadLibrary("native-lib");
     }
 
+    ArrayList<InstrumentContainer> instrumentContainerArrayList;
+    InstrumentContainer ic;
     EffectContainer ec;
+
+    boolean shareAll=false;
+    String strSharedFileName;
+    private String externeDateiPreFix = "#_";
 
     boolean boolSplitNotes=false;
     boolean boolMuteNotesSmalerThan=false;
@@ -95,9 +109,11 @@ public class EffectActivity extends Activity
     private int intVel;
     private int intChorusNr;
 
-    private String soundfontPath;
+    private String shareFilePath;
     private boolean boolShareIns=false;
+    private File myDirSettings;
 
+    LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -114,6 +130,15 @@ public class EffectActivity extends Activity
 
         instr = getIntent().getStringExtra("Instrument");
 
+        instrumentContainerArrayList = new ArrayList<>();
+
+        instrumentContainerArrayList = (ArrayList<InstrumentContainer>) getIntent().getSerializableExtra("instrumentList");
+
+
+        myDirSettings = new File(getIntent().getStringExtra("pathOfSettingsDir"));
+
+
+
         //ec = new EffectContainer();
         ec = (EffectContainer) getIntent().getSerializableExtra("EffectList");
 
@@ -121,6 +146,8 @@ public class EffectActivity extends Activity
 
 
         usbDeviceId = getIntent().getIntExtra("UsbdeviceID",0);
+
+
 
         global_channel = getIntent().getIntExtra("Channel",0);
 
@@ -133,7 +160,7 @@ public class EffectActivity extends Activity
             public void onClick(View view) {
 
                 boolShareIns = true;
-                finish();
+                popUpEditText();
 
             }
         });
@@ -751,6 +778,130 @@ public class EffectActivity extends Activity
 
     }
 
+    private void popUpEditText() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Save File As...");
+
+        final EditText input = new EditText(this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                strSharedFileName = externeDateiPreFix + input.getText().toString();
+                //File file = new File(myDirSettings, strSharedFileName);
+
+                try {
+                    //saveSharedInstruments(file,shareAll);
+                    saveSharedInstruments();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                dialog.dismiss();
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                strSharedFileName ="";
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    private void saveSharedInstruments() throws IOException {
+
+        //TODO: trqnsfer this to effectactivity without send file intent
+        File tempFile = new File(myDirSettings, strSharedFileName + ".txt");
+
+
+//        File tempFile = File.createTempFile(strSharedFileName,".txt",getApplicationContext().getCacheDir());
+        //file.createNewFile();
+
+        FileOutputStream stream = new FileOutputStream(tempFile);
+
+
+
+        String writeinstr = "";
+        //InstrumentButton ib = null;
+
+        int countInstr = instrumentContainerArrayList.size();
+
+        if (boolShareIns) {
+
+            for (int i = 0; i < countInstr; i++) {
+
+
+
+                if (instrumentContainerArrayList.get(i).isOn()) {
+                    writeinstr = writeinstr + instrumentContainerArrayList.get(i).getSoundfontPath() + "\n";
+                    writeinstr = writeinstr + instrumentContainerArrayList.get(i).getInstrumentName() + "\n";
+
+                    //TODO: save effects...
+                    //instr += instr + "\n";
+                }
+
+            }
+        } else {
+
+            for (int i = 0; i < countInstr; i++) {
+
+
+                if (instrumentContainerArrayList.get(i).getInstrumentName().compareTo(instr) == 0) {
+                    writeinstr = writeinstr + instrumentContainerArrayList.get(i).getSoundfontPath() + "\n";
+                    writeinstr = writeinstr + instrumentContainerArrayList.get(i).getInstrumentName() + "\n";
+
+                    //TODO: save effects...
+                    //instr += instr + "\n";
+                }
+
+            }
+            //instr = instr + ib.getSoundfontpath() + "\n";
+            //instr = instr + ib.getText().toString() + "\n";
+            //btnKeyboardAktivity.setText(instr);
+        }
+
+
+        stream.write(writeinstr.getBytes());
+
+        stream.flush();
+        stream.close();
+
+
+        if(tempFile.exists()) {
+
+            shareFilePath=tempFile.getAbsolutePath();
+            //testToast("Press OK for sharing File(s)...");
+            finish();
+        }
+        //Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        //sharingIntent.setType("text/plain");
+        //sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://" + tempFile.getAbsolutePath()));
+        //startActivity(Intent.createChooser(sharingIntent, "share file with...." + tempFile.getAbsolutePath()));
+
+
+
+        //tempFile.delete();
+
+
+
+
+
+    }
+
     public native int getFluidsynthLocalSplitNote(int global_channel,int usbDeviceId,String instr);
 
     public native void setFluidsynthBoolSplitNotes(int global_channel,int usbDeviceId,String instr, boolean boolSplitNotes);
@@ -809,14 +960,17 @@ public class EffectActivity extends Activity
 
         Intent data = new Intent();
 
+
         if(chckbxApplyAll.isChecked() && boolShareIns){
 
             data.putExtra("shareInstr","all");
 
+            data.putExtra("shareFile",strSharedFileName);
         }else if(!chckbxApplyAll.isChecked() && boolShareIns){
 
             data.putExtra("shareInstr","this");
 
+            data.putExtra("shareFile",strSharedFileName);
         }else if(!boolShareIns){
 
 
