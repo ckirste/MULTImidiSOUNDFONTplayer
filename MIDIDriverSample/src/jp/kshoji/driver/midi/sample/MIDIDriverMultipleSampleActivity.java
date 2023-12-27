@@ -75,7 +75,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
     ArrayList<InstrumentContainer> instrumentContainerArrayList;
     boolean shareAll=false;
     String strSharedFileName;
-    private String externeDateiPreFix = "#_";
+    private final String externeDateiPreFix = "#_";
     private ArrayList<String> arrlistSavedInstr = new ArrayList<>();
     private ArrayList<File> arrlistSavedInstrFiles = new ArrayList<>();
     private boolean instrumentsSaved = false;
@@ -91,6 +91,9 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
     private int counterRegBtn = 1;
     private int sampleRate=44100;
     private boolean boolLoadAltList=false;
+    private String extFile;
+    private boolean boolIsExtFile;
+    //private final String extFilePrefix = "#_";
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -211,9 +214,8 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
     private static final int PERMISSION_REQUEST_CODE_EXT_STORAGE_ = 724;
     private File myDirSettings;
-
-
     private File myDirSoundfonts;
+    private File myDirRegistrations;
 
     private int CHOOSE_INSTRUMENT_ACTIVITY_CODE = 1;
 
@@ -959,6 +961,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
         setContentView(R.layout.main_layout);//neu);
 
+
         btnKeyboardAktivity = (Button) findViewById(R.id.btnKeyboardAktivity);
 
         btnKeyboardAktivity.setOnClickListener(new View.OnClickListener() {
@@ -1323,6 +1326,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 		 */
 
+        Log.i("ONCREATE",myDirSoundfonts.getAbsolutePath());
         showRegistrationButtons();
     }
 
@@ -1747,6 +1751,7 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
     private void loadAlternativList(){
 
+        //final String extFile;
         final PopupWindow popupWindow = new PopupWindow(getApplicationContext());
         listedInstrumentsAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_single_choice, arrlistSavedInstr);
         final ListView listViewInstr = new ListView(getApplicationContext());
@@ -1761,7 +1766,17 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
             {
 
                 try {
-                    readFile(p2.toString(),arrlistSavedInstrFiles.get(p3));
+                    extFile = p1.getItemAtPosition(p3).toString(); //p2.toString();
+                    if(extFile.startsWith(externeDateiPreFix)){
+
+                        boolIsExtFile = true;
+
+                    }else{
+
+                        boolIsExtFile = false;
+
+                    }
+                    readFile(boolIsExtFile,arrlistSavedInstrFiles.get(p3));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -1801,9 +1816,10 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
     }
 
     //TODO: weiter bearbeiten
-    private void readFile(String usbDeviceName, File file) throws FileNotFoundException, IOException {
+    private void readFile(Boolean boolExtFile, File file) throws FileNotFoundException, IOException {
 
 
+        String strNotFoundExtSf2Files ="";
         FileInputStream is;
         BufferedReader reader;
 
@@ -1817,6 +1833,14 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
             String line = reader.readLine();
             if (!(line.compareTo("") ==0)) {
                 tempSoundfontPath = line;
+
+                Log.i(TAG, "readFile: "+boolExtFile.toString());
+                if(boolIsExtFile){
+
+                    tempSoundfontPath = checkSoundfontPath(tempSoundfontPath);
+
+                    Log.i(TAG, "readFileCheck: "+tempSoundfontPath);
+                }
                 int myLastPathBackSlash = myLastPath.lastIndexOf("/");
                 myLastPath = myLastPath.substring(0, myLastPathBackSlash);
 
@@ -1825,6 +1849,13 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
                     fluidsynthGetPresetName(tempSoundfontPath);
 
                     Log.d("countLines", "" + countLines);
+                }else{
+
+                    strNotFoundExtSf2Files = strNotFoundExtSf2Files + tempSoundfontPath + ", ";
+
+                    //shareText("folgende Datei nicht gefunden:",""+tempSoundfontPath);
+
+
                 }
 
                 //TODO: if counter is even than get soundfontpath otherwise get presetname
@@ -1850,11 +1881,23 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
                         } else {
 
                             tempSoundfontPath = line;
+                            if(boolExtFile){
+
+                                tempSoundfontPath = checkSoundfontPath(tempSoundfontPath);
+
+                            }
                             if (tempSoundfontPath.contains(myLastPath)) {
 
                                 fluidsynthGetPresetName(tempSoundfontPath);
 
                                 Log.d("countLines", "" + countLines);
+                            }else{
+
+                                strNotFoundExtSf2Files = strNotFoundExtSf2Files + tempSoundfontPath + ", ";
+                                //shareText("folgende Datei nicht gefunden:",""+tempSoundfontPath);
+
+
+
                             }
                             //fluidsynthGetPresetName(tempSoundfontPath);
                             //Log.d("countLines", "" + countLines);
@@ -1864,9 +1907,14 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
 
 
                 }
+                if(strNotFoundExtSf2Files.contains(tempSoundfontPath)) {
+                    
+                    shareText("folgende Datei(en) wurde(n) nicht gefunden: ", strNotFoundExtSf2Files);
+                }else {
+                    setInstrumentMode();
 
 
-                setInstrumentMode();
+                }
             }
 
 
@@ -1880,6 +1928,115 @@ public class MIDIDriverMultipleSampleActivity extends AbstractMultipleMidiActivi
         }
 
 
+    }
+
+
+    public void shareText(String subject,String body) {
+        Intent txtIntent = new Intent(android.content.Intent.ACTION_SEND);
+        txtIntent .setType("text/plain");
+        txtIntent .putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+        txtIntent .putExtra(android.content.Intent.EXTRA_TEXT, body);
+        startActivity(Intent.createChooser(txtIntent ,"From MMSP..."));
+    }
+
+
+    private String checkSoundfontPath(String soundfontPath){
+
+
+
+        String soundfontPathSf2="";
+        String[] arrStringsplit = soundfontPath.split("/");
+        int countStringSplit = arrStringsplit.length;
+        String soundfontName = arrStringsplit[countStringSplit-1];
+
+        Log.i("CHECKSOUNDFONTPATH",soundfontName);
+        FileInputStream is;
+        BufferedReader reader;
+
+        File sf2Direktion =myDirSoundfonts;
+
+        String standardSf2Dir = InstrumentChooseActivity.myStandardSF2Dir;
+        File fstandard = new File(myDirSettings,standardSf2Dir);
+        if(fstandard.exists()){
+
+
+
+            try
+            {
+                is = new FileInputStream(fstandard);
+
+                reader = new BufferedReader(new InputStreamReader(is));
+
+                try
+                {
+                    //Ordner wo die Sf2-Dateien liegen:
+                    String alternSf2Dir = reader.readLine();
+                    //soundfontPath = alternSf2Dir + "/"+ soundfontName;
+                    sf2Direktion = new File(alternSf2Dir); //soundfontPath);
+
+                    Log.i("SF2DIREKTION",sf2Direktion.getAbsolutePath());
+                }
+                catch (IOException e)
+                {}
+
+            }
+            catch (FileNotFoundException e)
+            {
+
+            }
+
+        }else{
+
+
+        }
+
+        //in dem Hauptordner nach der Sf2 suchen
+        for (File f:sf2Direktion.listFiles())
+        {
+
+            if (f.getName().compareTo(soundfontName) == 0)
+            {
+
+                soundfontPathSf2 = f.getAbsolutePath().toString();
+                return soundfontPathSf2;
+
+
+
+
+            }
+            else if (f.isDirectory())
+            {
+
+                for (File fSubDir:f.listFiles())
+                {
+
+                    if (fSubDir.getName().compareTo(soundfontName) == 0)
+                    {
+
+                        soundfontPathSf2 = fSubDir.getAbsolutePath().toString();
+                        return soundfontPathSf2;
+
+
+
+
+                    }
+                    else
+                    {
+
+                        soundfontPathSf2 = soundfontName;
+
+                    }
+
+                }//end for
+
+            }//end if
+
+        }//end for
+
+
+
+        //end for
+        return soundfontPathSf2;
     }
 
 

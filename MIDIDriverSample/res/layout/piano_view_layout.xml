@@ -153,36 +153,42 @@
 		android:orientation="horizontal">
 
 		<TextView
+			android:id="@+id/tvTranspo"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
 			android:text="Transpo" />
 
 		<Button
+			android:id="@+id/btn0"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:text="0" />
 
 		<Button
+			android:id="@+id/btnMinus1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:text="-1" />
 
 		<Button
+			android:id="@+id/btnPlus1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:text="+1" />
 
 		<Button
+			android:id="@+id/btnMinus12"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:text="-12" />
 
 		<Button
+			android:id="@+id/btnPlus12"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
@@ -213,6 +219,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
+			android:visibility="gone"
 			android:text="Back" />
 
 	</LinearLayout>

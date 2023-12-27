@@ -28,6 +28,9 @@ public class InstrumentChooseActivity extends Activity
 	 }
 	String selSoundfont;
 
+	public static final String myStandardSF2Dir="myStandardSF2Dir";
+
+	File standardFileDir =null;
 
 	//public InputStream is_temp = null;
 	
@@ -350,6 +353,25 @@ public class InstrumentChooseActivity extends Activity
 
 
 		});
+
+		btnReturn.setOnLongClickListener(new OnLongClickListener(){
+
+			@Override
+			public boolean onLongClick(View p1)
+			{
+				// TODO: Implement this method
+
+				createStandardSoundfontDir();
+
+				Toast.makeText(getApplicationContext(), "File for StandardSF2Dir created", Toast.LENGTH_SHORT).show();
+				//testToast("File for StandardSF2Dir created");
+
+				return true;
+			}
+
+
+		});
+
 		try
 		{
 			createDir();
@@ -422,6 +444,42 @@ public class InstrumentChooseActivity extends Activity
 		});
 
 
+		standardFileDir = new File(myDirSettings,myStandardSF2Dir);
+
+		if(!standardFileDir.exists()){
+
+			showPopupMessageForSetSf2FileMainDir();
+
+			//super.finish();
+		}
+
+	}
+
+	private void showPopupMessageForSetSf2FileMainDir(){
+
+
+		String text = "\u21D1 Achtung: Erst zu Hauptordner navigieren, wo die SF2-Dateien liegen!\n" +
+				"Dann 'Lang-Click' auf Button mit Pfad!";
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Create Main-Direction for Soundfont-Files");
+		builder.setMessage(text);
+		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialogInterface, int i) {
+
+
+
+				dialogInterface.dismiss();
+			}
+		});
+
+
+		AlertDialog alert = builder.create();
+		alert.show();
+
+
+
+
 	}
 
 	public String getExt(String filePath){
@@ -460,6 +518,36 @@ public class InstrumentChooseActivity extends Activity
 		}
 	}
 
+	private void createStandardSoundfontDir(){
+
+
+		String strBtnReturnText = btnReturn.getText().toString();
+		standardFileDir = new File(myDirSettings,myStandardSF2Dir);
+		if(!standardFileDir.exists()){
+
+
+			try
+			{
+				standardFileDir.createNewFile();
+
+				FileOutputStream stream = new FileOutputStream(standardFileDir);
+
+
+				stream.write((strBtnReturnText).getBytes());
+
+				stream.close();
+
+			}
+			catch (IOException e)
+			{}
+
+
+		}
+
+
+
+
+	}
 	private void createDir()
 	{
 
@@ -654,7 +742,19 @@ public class InstrumentChooseActivity extends Activity
 		catch (IOException e)
 		{}
 
-		super.finish();
+		standardFileDir = new File(myDirSettings,myStandardSF2Dir);
+
+		if(!standardFileDir.exists()){
+
+			showPopupMessageForSetSf2FileMainDir();
+
+			//super.finish();
+		}else{
+
+			super.finish();
+
+		}
+
 
 
 

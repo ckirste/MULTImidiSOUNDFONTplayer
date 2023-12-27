@@ -12,10 +12,11 @@ import android.support.v7.app.*;
 
 public class KeyboardActivity extends Activity
 {
-	int intTranspose;
+	int intTranspose =0;
 	float rotation = 0.0f;
 	Synthesizer synth;
 	private int global_channel=0;
+	private TextView tvTranspo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -233,8 +234,9 @@ public class KeyboardActivity extends Activity
 		findViewById(R.id.buttonAisu).setBackgroundResource(R.drawable.rect_black_key);//getBackground().setColorFilter(blackKeyColor, Mode.MULTIPLY);
 		findViewById(R.id.buttonBu).setBackgroundResource(R.drawable.rect_white_key); //getBackground().setColorFilter(whiteKeyColor, Mode.MULTIPLY);
 		findViewById(R.id.buttonC2u).setBackgroundResource(R.drawable.rect_white_key); //getBackground().setColorFilter(whiteKeyColor, Mode.MULTIPLY);
-		
-		
+
+		tvTranspo = (TextView) findViewById(R.id.tvTranspo);
+
 		findViewById(R.id.btnRotatePiano).setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -252,8 +254,54 @@ public class KeyboardActivity extends Activity
 			
 			
 		});
-		
-		
+
+		findViewById(R.id.btn0).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				intTranspose = 0;
+				tvTranspo.setText(""+intTranspose);
+
+			}
+		});
+		findViewById(R.id.btnPlus1).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				intTranspose = intTranspose +1;
+
+				tvTranspo.setText(""+intTranspose);
+			}
+		});
+
+		findViewById(R.id.btnMinus1).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				intTranspose = intTranspose -1;
+
+				tvTranspo.setText(""+intTranspose);
+			}
+		});
+
+		findViewById(R.id.btnPlus12).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				intTranspose = intTranspose +12;
+
+				tvTranspo.setText(""+intTranspose);
+			}
+		});
+		findViewById(R.id.btnMinus12).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				intTranspose = intTranspose -12;
+				tvTranspo.setText(""+intTranspose);
+			}
+		});
+
 	}
 	
 	public void testToast(String s)
