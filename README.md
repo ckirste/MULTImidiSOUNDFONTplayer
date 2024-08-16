@@ -5,9 +5,6 @@ from a sf2-file (or diverse in future)  for each midi-controller you plug on you
 smartphone (os android) via usb-otg, so you can build your
 own orchestra for each midi-controller.
 
-Attention: Screeenshots are not updated.
-
-
 
 
 Repository Overview
