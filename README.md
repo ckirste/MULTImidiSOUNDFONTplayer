@@ -31,10 +31,10 @@ AND fluidsynth.org
 Todo
 ====
 - iterate instruments per usbdevice * done *
-- diverent volumes for each instrument * work in progress *
+- diverent volumes for each instrument * done *
 - transpose buttons * done *
 - save/open selected instruments and settings * done *
-- add more effects (reverb, delay,etc.) * work in progress *
+- add more effects (reverb, delay,etc.) * done *
 - file-chooser for sf2-files * done *
 - record/play midi option
 - option of drum companion
