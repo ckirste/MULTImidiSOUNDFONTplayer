@@ -9,6 +9,8 @@ own orchestra for each midi-controller.
 
 Repository Overview
 ====
+- final_develop_fluidsynth_on_v0.1.5 is the updated Branch
+
 - Library Project : `MIDIDriver`
     - The driver for connecting an USB MIDI device.
 
