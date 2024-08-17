@@ -35,8 +35,11 @@ Todo
 - save/open selected instruments and settings * done *
 - add more effects (reverb, delay,etc.) * done *
 - file-chooser for sf2-files * done *
-- record/play midi option
-- option of drum companion
+- option for spliting keyboard for each instrument * done *
+- option for sharing used instruments * done / work in progress *
+- migrate to androidx for getting compatible with newest android smartphones
+- option for record/play midi/audio aka build in stepsequencer
+- option for drum companion / stepsequencer
 ...
 
 
