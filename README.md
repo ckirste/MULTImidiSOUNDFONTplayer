@@ -39,6 +39,10 @@ Todo
 - option of drum companion
 ...
 
+
+https://github.com/user-attachments/assets/b33f4e50-8c83-4586-8e8f-1e473383098a
+
+
 ![Screenshot_20240816_205542_MIDIDriverSample](https://github.com/user-attachments/assets/e13646fb-44d7-4b8e-82a2-902189ac0237)
 
 ![Screenshot_20240816_205617_MIDIDriverSample](https://github.com/user-attachments/assets/a81e67e0-ca0a-4b92-98a8-adbb194f8379)
