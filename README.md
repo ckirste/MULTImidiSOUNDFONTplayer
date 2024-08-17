@@ -1,7 +1,7 @@
 Description
 ====
 with MULTImidiSOUNDFONTplayer you can mix diverent instruments
-from a sf2-file (or diverse in future)  for each midi-controller you plug on your
+from several sf2-files for each midi-controller you plug on your
 smartphone (os android) via usb-otg, so you can build your
 own orchestra for each midi-controller.
 
