@@ -1,6 +1,6 @@
 Description
 ====
-with MULTImidiSOUNDFONTplayer you can mix diverent instruments
+with MULTImidiSOUNDFONTplayer (MMSP) you can mix diverent instruments
 from several sf2-files for each midi-controller you plug on your
 smartphone (os android) via usb-otg, so you can build your
 own orchestra for each midi-controller.
