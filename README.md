@@ -62,6 +62,7 @@ Todo
 - file-chooser for sf2-files * done *
 - option for spliting keyboard for each instrument * done *
 - option for sharing used instruments * done / work in progress *
+- add pdfviewer for sheet music
 - migrate to androidx for getting compatible with newest android smartphones
 - option for record/play midi/audio aka build in stepsequencer
 - option for drum companion / stepsequencer
