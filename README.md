@@ -15,6 +15,7 @@ Bedienung (German/Deutsch):
 - (Register-) Knöpfe 1-8: Lang-Klick: Instrument-Liste speichern, Kurz-Klick: Instrument-Liste laden.
 - Effekt-Einstellungen: "M<": Klick, dann Taste auf MIDIC drücken...alle Töne niedriger werden Stumm. "M>": Klick, dann Taste auf MIDIC drücken...alle Töne höher werden Stumm. "Share": Liste alle geladenen Instrumente ("grün") teilen via WA, Mail, etc.
 - Slider oder Knopf (in MMSP) mit Midi-Controller-Knopf (MCK) von angeschlossenem MIDIC verbinden: erst MCK betätigen, dann Slider oder Knopf in MMSP betätigen... MCK ist nun mit MMSP verbunden.
+- So kann man zum Beispiel das Fusspedal des E-Pianos mit dem Drum-Button verbinden und als Begleit-Rythmus verwenden
 
 
 https://github.com/user-attachments/assets/b33f4e50-8c83-4586-8e8f-1e473383098a
